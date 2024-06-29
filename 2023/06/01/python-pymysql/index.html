@@ -1,0 +1,249 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>pymysql | Qeminco'blog</title><meta name="author" content="Qeminco"><meta name="copyright" content="Qeminco"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="pymysql的简单使用pip install pymysql #安装 import pymysql#DB-API规范的方法:connect() 连接函数，生成一个connect对象，以提供数据库操作。conn &#x3D; pymysql.connect(host&#x3D;&quot;127.0.0.1&quot;,user&#x3D;&quot;root&quot;,password&#x3D;&quot;123456&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pymysql">
+<meta property="og:url" content="https://qeminco.github.io/2023/06/01/python-pymysql/index.html">
+<meta property="og:site_name" content="Qeminco&#39;blog">
+<meta property="og:description" content="pymysql的简单使用pip install pymysql #安装 import pymysql#DB-API规范的方法:connect() 连接函数，生成一个connect对象，以提供数据库操作。conn &#x3D; pymysql.connect(host&#x3D;&quot;127.0.0.1&quot;,user&#x3D;&quot;root&quot;,password&#x3D;&quot;123456&quot;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qeminco.github.io/img/77.jpg">
+<meta property="article:published_time" content="2023-05-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-24T08:14:11.858Z">
+<meta property="article:author" content="Qeminco">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qeminco.github.io/img/77.jpg"><link rel="shortcut icon" href="/img/cat.png"><link rel="canonical" href="https://qeminco.github.io/2023/06/01/python-pymysql/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'pymysql',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-24 16:14:11'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/kunkun.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/77.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Qeminco'blog"><img class="site-icon" src="/img/cat.png"/><span class="site-name">Qeminco'blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">pymysql</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-05-31T16:00:00.000Z" title="发表于 2023-06-01 00:00:00">2023-06-01</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="pymysql的简单使用"><a href="#pymysql的简单使用" class="headerlink" title="pymysql的简单使用"></a>pymysql的简单使用</h1><p>pip install pymysql #安装</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line"><span class="comment">#DB-API规范的方法:connect() 连接函数，生成一个connect对象，以提供数据库操作。</span></span><br><span class="line">conn = pymysql.connect(host=<span class="string">&quot;127.0.0.1&quot;</span>,user=<span class="string">&quot;root&quot;</span>,password=<span class="string">&quot;123456&quot;</span>,db=<span class="string">&quot;数据库名&quot;</span>)</span><br><span class="line"></span><br><span class="line">cursor = conn.cursor() <span class="comment">#创建游标</span></span><br><span class="line">sql = <span class="string">&quot;sql语句&quot;</span> <span class="comment">#写一个SQL语句</span></span><br><span class="line">cursor.execute(sql) <span class="comment">#执行SQL语句，执行结果存到游标中</span></span><br><span class="line"><span class="comment">#conn.commit() #提交事务</span></span><br><span class="line">res = cursor.fetchall() <span class="comment">#读取游标中结果集的所有行</span></span><br><span class="line"><span class="built_in">print</span>(res)</span><br><span class="line"></span><br><span class="line">cursor.close()<span class="comment">#关闭游标</span></span><br><span class="line">conn.close()<span class="comment">#关闭数据库连接</span></span><br></pre></td></tr></table></figure>
+
+<p>插入数据：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line">conn = pymysql.connect(host=<span class="string">&quot;127.0.0.1&quot;</span>,user=<span class="string">&quot;root&quot;</span>,password=<span class="string">&quot;123456&quot;</span>,db=<span class="string">&quot;数据库名&quot;</span>)</span><br><span class="line">cursor = conn.cursor()</span><br><span class="line">sql = <span class="string">&quot;insert into history values(%s,%s,%s,%s,%s,%s,%s,%s,%s)&quot;</span></span><br><span class="line">cursor.execute(sql,[time.strftime(<span class="string">&quot;%Y-%m-%d&quot;</span>),<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>])<span class="comment">#用[]包含九个数据，对应上一步的九个%s占位符，其中第一个数据是日期时间数据，strftime是数据表中的字段名</span></span><br><span class="line">conn.commit()<span class="comment">#提交事务</span></span><br><span class="line"><span class="comment">#res = cursorfetchall()</span></span><br><span class="line">cursor.close()</span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="connect"><a href="#connect" class="headerlink" title="connect()"></a>connect()</h2><p><strong>DB-API规范的方法:</strong></p>
+<p>connect() 连接函数，生成一个connect对象，以提供数据库操作，同事函数参数也是固定好的</p>
+<p>其中connect对象又有如下方法:</p>
+<ul>
+<li>close():关闭此connect对象, 关闭后无法再进行操作，除非再次创建连接</li>
+<li>commit():提交当前事务，如果是支持事务的数据库执行增删改后没有commit则数据库默认回滚，白操作了</li>
+<li>rollback():取消当前事务</li>
+<li>cursor():创建游标对象</li>
+<li>其中cursor游标对象又有如下属性和方法:<ul>
+<li>close() #关闭此游标对象</li>
+<li>fetchone() #得到结果集的下一行</li>
+<li>fetchmany([size &#x3D; cursor.arraysize]) #得到结果集的下几行</li>
+<li>fetchall() #得到结果集中剩下的所有行</li>
+<li>excute(sql[, args]):执行一个数据库查询或命令</li>
+<li>excutemany(sql, args):执行多个数据库查询或命令</li>
+<li>常用属性:<ul>
+<li>connection:创建此游标对象的数据库连接</li>
+<li>arraysize:使用fetchmany()方法一次取出多少条记录，默认为1</li>
+<li>lastrowid:相当于PHP的last_inset_id()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>所谓事务可以认为是一整套操作 只要有一处纰漏就废。</p>
+<h2 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h2><p>游标，通俗的解释就是”游动的标志”，这是数据库中一个很重要的概念。</p>
+<p>有时候，我们执行一条查询语句的时候，往往会得到N条返回结果，<strong>执行sql语句取出这些返回结果的接口(起始点)，就是游标</strong>。沿着这个游标，我们可以一次取出一行记录。</p>
+<p>当不使用游标功能，我们去执行 select * from student where age &gt; 20; 这条语句的时候，如果有1000条返回结果，系统会一次性将1000条记录返回到界面中，你没有选择，也不能做其他操作。</p>
+<p><strong>当我们开启了游标功能，再去执行这条语句的时候，系统会先帮你找到这些行， 先给你存放起来，然后提供了一个游标接口</strong>。当你需要数据的时候，就借助这个游标去一行行的取出数据，你每取出一条记录，游标指针就朝前移动一次，一直到取完最后一行数据后。</p>
+<p>一张图讲述游标的功能：</p>
+<p><img src="http://img.qianmingchao.top/img/20230312161920.png"></p>
+<h2 id="使用游标的好处？"><a href="#使用游标的好处？" class="headerlink" title="使用游标的好处？"></a>使用游标的好处？</h2><p>​    <strong>如果不使用游标功能，直接使用select查询，会一次性将结果集打印到屏幕上，你无法针对结果集做第二次编程。</strong></p>
+<p>​    使用游标功能后，我们可以将得到的结果先保存起来，然后可以随意进行自己的编程，得到我们最终想要的结果集。</p>
+<h1 id="利用python连接数据库"><a href="#利用python连接数据库" class="headerlink" title="利用python连接数据库"></a>利用python连接数据库</h1><h2 id="以python连接mysql"><a href="#以python连接mysql" class="headerlink" title="以python连接mysql"></a>以python连接mysql</h2><p>​    使用python连接数据库的时候，会经常使用游标这个功能。我们以python连接mysql数据库来说明使用游标的好处。</p>
+<p>​    当我们使用python连接mysql的时候，那么python就相当于是mysql服务器的一个客户端，我们利用python这个client去操纵mysql的server。</p>
+<p>​    在pymysql中操作数据库，就是使用游标这种方式来获取表中的数据。</p>
+<h2 id="使用游标的操作步骤"><a href="#使用游标的操作步骤" class="headerlink" title="使用游标的操作步骤"></a>使用游标的操作步骤</h2><p>​    首先，使用pymysql连接上mysql数据库，得到一个数据库对象。</p>
+<p>​    然后，我们必须要开启数据库中的游标功能，得到一个游标对象。</p>
+<p>​    接着，使用游标对象中的execute()方法，去执行某个SQL语句，系统会根据你的SQL语句，找到这些匹配行，给你存储起来，而不是一次性的打印到屏幕上。什么时候需要这个结果中的数据的时候，你就去获取它。</p>
+<p>​    最后，就是获取结果集中的数据了，这里有两种方法获取结果集中的数据。一个是fetchone()，该方法一次获取一条记录，每一条记录是一个元组形式的数据，每获取一条记录游标会往前移动一格，等待获取下一条记录；一个是fetchall()方法，能够一次性的获取所有的数据，该方法返回的是一个元组列表。</p>
+<p>​    当完成所有操作后，记得断开数据库的连接，释放资源。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://qeminco.github.io">Qeminco</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://qeminco.github.io/2023/06/01/python-pymysql/">https://qeminco.github.io/2023/06/01/python-pymysql/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://qeminco.github.io" target="_blank">Qeminco'blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a></div><div class="post_share"></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/10/17/jupyter/" title="jupyter"><img class="cover" src="/img/6.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-17</div><div class="title">jupyter</div></div></a></div><div><a href="/2023/06/01/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" title="python虚拟环境"><img class="cover" src="/img/66.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-01</div><div class="title">python虚拟环境</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/kunkun.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Qeminco</div><div class="author-info__description">学习如逆水行舟，不进则退。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">生活明朗，万物可爱。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pymysql%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">pymysql的简单使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#connect"><span class="toc-number">1.1.</span> <span class="toc-text">connect()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E6%A0%87"><span class="toc-number">1.2.</span> <span class="toc-text">游标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%B8%B8%E6%A0%87%E7%9A%84%E5%A5%BD%E5%A4%84%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">使用游标的好处？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%A9%E7%94%A8python%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.</span> <span class="toc-text">利用python连接数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A5python%E8%BF%9E%E6%8E%A5mysql"><span class="toc-number">2.1.</span> <span class="toc-text">以python连接mysql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%B8%B8%E6%A0%87%E7%9A%84%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.2.</span> <span class="toc-text">使用游标的操作步骤</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题"><img src="/img/14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题">无题</a><time datetime="2024-06-27T15:07:52.030Z" title="发表于 2024-06-27 23:07:52">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi"><img src="/img/26.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JNDI、ldap与rmi"/></a><div class="content"><a class="title" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi">JNDI、ldap与rmi</a><time datetime="2024-06-26T16:00:00.000Z" title="发表于 2024-06-27 00:00:00">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fastjson反序列化RCE"/></a><div class="content"><a class="title" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE">Fastjson反序列化RCE</a><time datetime="2024-06-24T16:00:00.000Z" title="发表于 2024-06-25 00:00:00">2024-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud Gateway远程命令执行漏洞复现"/></a><div class="content"><a class="title" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现">Spring Cloud Gateway远程命令执行漏洞复现</a><time datetime="2024-06-22T16:00:00.000Z" title="发表于 2024-06-23 00:00:00">2024-06-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven"><img src="/img/6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="idea配置Maven"/></a><div class="content"><a class="title" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven">idea配置Maven</a><time datetime="2024-06-20T16:00:00.000Z" title="发表于 2024-06-21 00:00:00">2024-06-21</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/77.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By Qeminco</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到我的博客~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://qeminco-twikoo.hf.space',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://qeminco-twikoo.hf.space',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

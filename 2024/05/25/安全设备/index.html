@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>安全设备 | Qeminco'blog</title><meta name="author" content="Qeminco"><meta name="copyright" content="Qeminco"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="防火墙防火墙是一种高级访问控制设备，部署在不同网络安全域之间。它通过相关的安全策略（如允许、拒绝、监视、记录）来控制进出网络的访问行为。防火墙可以阻止恶意流量进入网络，同时还可以防止内部敏感数据外泄。根据实现方式，防火墙可分为包过滤防火墙和应用代理防火墙。 WAF简单介绍Web应用防护系统（Web Application Firewall, 简称：WAF。不同于系统防火墙，是专门服务于网站的web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全设备">
+<meta property="og:url" content="https://qeminco.github.io/2024/05/25/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87/index.html">
+<meta property="og:site_name" content="Qeminco&#39;blog">
+<meta property="og:description" content="防火墙防火墙是一种高级访问控制设备，部署在不同网络安全域之间。它通过相关的安全策略（如允许、拒绝、监视、记录）来控制进出网络的访问行为。防火墙可以阻止恶意流量进入网络，同时还可以防止内部敏感数据外泄。根据实现方式，防火墙可分为包过滤防火墙和应用代理防火墙。 WAF简单介绍Web应用防护系统（Web Application Firewall, 简称：WAF。不同于系统防火墙，是专门服务于网站的web">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qeminco.github.io/img/8.jpg">
+<meta property="article:published_time" content="2024-05-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-23T08:04:14.026Z">
+<meta property="article:author" content="Qeminco">
+<meta property="article:tag" content="防御">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qeminco.github.io/img/8.jpg"><link rel="shortcut icon" href="/img/cat.png"><link rel="canonical" href="https://qeminco.github.io/2024/05/25/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '安全设备',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-23 16:04:14'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/kunkun.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/8.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Qeminco'blog"><img class="site-icon" src="/img/cat.png"/><span class="site-name">Qeminco'blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">安全设备</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-05-24T16:00:00.000Z" title="发表于 2024-05-25 00:00:00">2024-05-25</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h1><p>防火墙是一种高级访问控制设备，部署在不同网络安全域之间。它通过相关的安全策略（如允许、拒绝、监视、记录）来控制进出网络的访问行为。防火墙可以阻止恶意流量进入网络，同时还可以防止内部敏感数据外泄。根据实现方式，防火墙可分为包过滤防火墙和应用代理防火墙。</p>
+<h1 id="WAF"><a href="#WAF" class="headerlink" title="WAF"></a>WAF</h1><h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>Web应用防护系统（Web Application Firewall, 简称：WAF。不同于系统防火墙，是专门服务于网站的web防火墙。</p>
+<p>Web应用防火墙是通过执行一系列针对HTTP&#x2F;HTTPS的安全策略来专门为Web应用提供保护的一款产品。</p>
+<p>WAF工作在应用层。</p>
+<p>WAF对来自Web应用程序客户端的各类请求进行内容检测和验证，确保其安全性与合法性，对非法的请求予以实时阻断，从而对各类网站站点进行有效防护。</p>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><h3 id="审计"><a href="#审计" class="headerlink" title="审计"></a>审计</h3><p>对于系统自身安全相关的下列事件产生审计记录：</p>
+<p>（1）管理员登录后进行的操作行为；</p>
+<p>（2） 对安全策略进行添加、修改、删除等操作行为；</p>
+<p>（3） 对管理角色进行增加、删除和属性修改等操作行为；</p>
+<p>（4） 对其他安全功能配置参数的设置或更新等行为。</p>
+<h3 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h3><p>用来控制对Web应用的访问，既包括<code>主动安全模式</code>也包括<code>被动安全模式</code>。</p>
+<h3 id="架构及网络设计"><a href="#架构及网络设计" class="headerlink" title="架构及网络设计"></a>架构及网络设计</h3><p>当运行在反向代理模式，他们被用来分配职能，集中控制，虚拟基础结构等。</p>
+<h3 id="WEB应用加固"><a href="#WEB应用加固" class="headerlink" title="WEB应用加固"></a>WEB应用加固</h3><p>这些功能增强被保护Web应用的安全性，它不仅能够屏蔽WEB应用固有弱点，而且 能够保护WEB应用编程错误导致的安全隐患。</p>
+<p><strong>需要指出的是，并非每种被称为Web应用防火墙的设备都同时具有以上四种功能。</strong></p>
+<p>同时WEB应用防火墙还具有多面性的特点。比如从网络入侵检测的角度来看可以把WAF看成运行在HTTP层上的IDS设备。</p>
+<h1 id="IDS"><a href="#IDS" class="headerlink" title="IDS"></a>IDS</h1><p>入侵检测系统（intrusion detection system）是一种用于检测网络或系统是否遭受攻击的监控系统。IDS通过软件、硬件对网络或系统的运行状况进行监视，尽可能地发现各种攻击企图、攻击行为或攻击结果。IDS可以分为实时入侵检测和事后入侵检测两类。</p>
+<h1 id="IPS"><a href="#IPS" class="headerlink" title="IPS"></a>IPS</h1><p>Intrusion Prevention System入侵预防系统是一种更为主动的网络安全防护措施。IPS不仅检测已知的攻击行为，而且基于已知的攻击行为模式来预测和阻止可能的攻击。IPS可以实时中断、调整或隔离一些不正常或具有伤害性的网络资料传输行为。与IDS相比，IPS更注重预防，而不是仅仅检测攻击。</p>
+<h1 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h1><ol>
+<li>工作范围：WAF工作在应用层，专注于Web应用的安全；而防火墙工作在网络层，涉及更广泛的网络安全防护。</li>
+<li>防御方式：IDS主要用于检测攻击行为；IPS则不仅检测攻击行为，还进行主动防御。</li>
+<li>部署方式：WAF通常串联部署在应用程序前端；防火墙既可以串联部署也可以旁路部署；IDS通常旁路部署在网络中，用于监控流量；而IPS既可以串联部署也可以旁路部署。</li>
+<li>功能差异：WAF专注于Web应用安全防护；防火墙则提供更全面的网络安全防护；IDS侧重于攻击检测；而IPS更强调预防攻击的功能。</li>
+</ol>
+<p><img src="/img/image-20240519174134150.png" alt="image-20240519174134150"></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2238853">IPS vs IDS vs Firewall vs WAF，它们之间有什么区别与联系？-腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://qeminco.github.io">Qeminco</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://qeminco.github.io/2024/05/25/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87/">https://qeminco.github.io/2024/05/25/安全设备/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://qeminco.github.io" target="_blank">Qeminco'blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%98%B2%E5%BE%A1/">防御</a></div><div class="post_share"></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/kunkun.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Qeminco</div><div class="author-info__description">学习如逆水行舟，不进则退。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">生活明朗，万物可爱。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">1.</span> <span class="toc-text">防火墙</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WAF"><span class="toc-number">2.</span> <span class="toc-text">WAF</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.1.</span> <span class="toc-text">简单介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">2.2.</span> <span class="toc-text">功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A1%E8%AE%A1"><span class="toc-number">2.2.1.</span> <span class="toc-text">审计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-number">2.2.2.</span> <span class="toc-text">访问控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%8F%8A%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.2.3.</span> <span class="toc-text">架构及网络设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WEB%E5%BA%94%E7%94%A8%E5%8A%A0%E5%9B%BA"><span class="toc-number">2.2.4.</span> <span class="toc-text">WEB应用加固</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IDS"><span class="toc-number">3.</span> <span class="toc-text">IDS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IPS"><span class="toc-number">4.</span> <span class="toc-text">IPS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-number">5.</span> <span class="toc-text">区别</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题"><img src="/img/14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题">无题</a><time datetime="2024-06-27T15:07:52.030Z" title="发表于 2024-06-27 23:07:52">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi"><img src="/img/26.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JNDI、ldap与rmi"/></a><div class="content"><a class="title" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi">JNDI、ldap与rmi</a><time datetime="2024-06-26T16:00:00.000Z" title="发表于 2024-06-27 00:00:00">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fastjson反序列化RCE"/></a><div class="content"><a class="title" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE">Fastjson反序列化RCE</a><time datetime="2024-06-24T16:00:00.000Z" title="发表于 2024-06-25 00:00:00">2024-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud Gateway远程命令执行漏洞复现"/></a><div class="content"><a class="title" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现">Spring Cloud Gateway远程命令执行漏洞复现</a><time datetime="2024-06-22T16:00:00.000Z" title="发表于 2024-06-23 00:00:00">2024-06-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven"><img src="/img/6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="idea配置Maven"/></a><div class="content"><a class="title" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven">idea配置Maven</a><time datetime="2024-06-20T16:00:00.000Z" title="发表于 2024-06-21 00:00:00">2024-06-21</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/8.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By Qeminco</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到我的博客~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://qeminco-twikoo.hf.space',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://qeminco-twikoo.hf.space',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

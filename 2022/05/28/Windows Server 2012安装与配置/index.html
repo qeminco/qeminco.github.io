@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Windows Server 2012安装与配置 | Qeminco'blog</title><meta name="author" content="Qeminco"><meta name="copyright" content="Qeminco"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Windows Server 2012安装与配置1 镜像下载ed2k:&#x2F;&#x2F;|file|cn_windows_server_2012_r2_vl_with_update_x64_dvd_6052729.iso|5545527296|BD499EBCABF406AB82293DD8A5803493|&#x2F;  2 激活系统激活工具。 链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1GU6wZx4Ax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows Server 2012安装与配置">
+<meta property="og:url" content="https://qeminco.github.io/2022/05/28/Windows%20Server%202012%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Qeminco&#39;blog">
+<meta property="og:description" content="Windows Server 2012安装与配置1 镜像下载ed2k:&#x2F;&#x2F;|file|cn_windows_server_2012_r2_vl_with_update_x64_dvd_6052729.iso|5545527296|BD499EBCABF406AB82293DD8A5803493|&#x2F;  2 激活系统激活工具。 链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1GU6wZx4Ax">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qeminco.github.io/img/26.jpg">
+<meta property="article:published_time" content="2022-05-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-24T08:15:55.729Z">
+<meta property="article:author" content="Qeminco">
+<meta property="article:tag" content="Windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qeminco.github.io/img/26.jpg"><link rel="shortcut icon" href="/img/cat.png"><link rel="canonical" href="https://qeminco.github.io/2022/05/28/Windows%20Server%202012%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Windows Server 2012安装与配置',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-24 16:15:55'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/kunkun.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/26.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Qeminco'blog"><img class="site-icon" src="/img/cat.png"/><span class="site-name">Qeminco'blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Windows Server 2012安装与配置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2022-05-27T16:00:00.000Z" title="发表于 2022-05-28 00:00:00">2022-05-28</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Windows-Server-2012安装与配置"><a href="#Windows-Server-2012安装与配置" class="headerlink" title="Windows Server 2012安装与配置"></a>Windows Server 2012安装与配置</h1><h1 id="1-镜像下载"><a href="#1-镜像下载" class="headerlink" title="1 镜像下载"></a>1 镜像下载</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ed2k://|file|cn_windows_server_2012_r2_vl_with_update_x64_dvd_6052729.iso|5545527296|BD499EBCABF406AB82293DD8A5803493|/</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-激活系统"><a href="#2-激活系统" class="headerlink" title="2 激活系统"></a>2 激活系统</h1><p>激活工具。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/1GU6wZx4Axv0rhFZVP1JECA?pwd=7kms </span><br><span class="line">提取码：7kms </span><br></pre></td></tr></table></figure>
+
+<h1 id="3-关闭密码要求"><a href="#3-关闭密码要求" class="headerlink" title="3 关闭密码要求"></a>3 关闭密码要求</h1><p><img src="/img/20220610134151.png"></p>
+<p><img src="/img/20220610134258.png"></p>
+<p>双击打开选择禁用就行了。</p>
+<p>密码最长使用期限改为0就永远不过期了。</p>
+<p><img src="/img/20220610134534.png"></p>
+<h1 id="4-更改密码"><a href="#4-更改密码" class="headerlink" title="4 更改密码"></a>4 更改密码</h1><p><img src="/img/20220610135135.png"></p>
+<p>我把密码改为123456比较好记。</p>
+<p>然后注销重新登录。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://qeminco.github.io">Qeminco</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://qeminco.github.io/2022/05/28/Windows%20Server%202012%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">https://qeminco.github.io/2022/05/28/Windows Server 2012安装与配置/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://qeminco.github.io" target="_blank">Qeminco'blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Windows/">Windows</a></div><div class="post_share"></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/05/08/windows%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/" title="PowerShell"><img class="cover" src="/img/3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-08</div><div class="title">PowerShell</div></div></a></div><div><a href="/2022/09/20/windows%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99/" title="Windows简单搭建网页"><img class="cover" src="/img/22.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-20</div><div class="title">Windows简单搭建网页</div></div></a></div><div><a href="/2024/05/25/%E4%B8%80%E4%BA%9BWindows%E5%91%BD%E4%BB%A4/" title="一些Windows命令"><img class="cover" src="/img/28.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-25</div><div class="title">一些Windows命令</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/kunkun.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Qeminco</div><div class="author-info__description">学习如逆水行舟，不进则退。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">生活明朗，万物可爱。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows-Server-2012%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">Windows Server 2012安装与配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BD"><span class="toc-number">2.</span> <span class="toc-text">1 镜像下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%BF%80%E6%B4%BB%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.</span> <span class="toc-text">2 激活系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%85%B3%E9%97%AD%E5%AF%86%E7%A0%81%E8%A6%81%E6%B1%82"><span class="toc-number">4.</span> <span class="toc-text">3 关闭密码要求</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E6%9B%B4%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-number">5.</span> <span class="toc-text">4 更改密码</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题"><img src="/img/14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题">无题</a><time datetime="2024-06-27T15:07:52.030Z" title="发表于 2024-06-27 23:07:52">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi"><img src="/img/26.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JNDI、ldap与rmi"/></a><div class="content"><a class="title" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi">JNDI、ldap与rmi</a><time datetime="2024-06-26T16:00:00.000Z" title="发表于 2024-06-27 00:00:00">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fastjson反序列化RCE"/></a><div class="content"><a class="title" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE">Fastjson反序列化RCE</a><time datetime="2024-06-24T16:00:00.000Z" title="发表于 2024-06-25 00:00:00">2024-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud Gateway远程命令执行漏洞复现"/></a><div class="content"><a class="title" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现">Spring Cloud Gateway远程命令执行漏洞复现</a><time datetime="2024-06-22T16:00:00.000Z" title="发表于 2024-06-23 00:00:00">2024-06-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven"><img src="/img/6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="idea配置Maven"/></a><div class="content"><a class="title" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven">idea配置Maven</a><time datetime="2024-06-20T16:00:00.000Z" title="发表于 2024-06-21 00:00:00">2024-06-21</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/26.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By Qeminco</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到我的博客~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://qeminco-twikoo.hf.space',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://qeminco-twikoo.hf.space',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Qeminco'blog - 你好</title><meta name="author" content="Qeminco"><meta name="copyright" content="Qeminco"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习如逆水行舟，不进则退。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Qeminco&#39;blog">
+<meta property="og:url" content="https://qeminco.github.io/index.html">
+<meta property="og:site_name" content="Qeminco&#39;blog">
+<meta property="og:description" content="学习如逆水行舟，不进则退。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qeminco.github.io/img/kunkun.jpeg">
+<meta property="article:author" content="Qeminco">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qeminco.github.io/img/kunkun.jpeg"><link rel="shortcut icon" href="/img/cat.png"><link rel="canonical" href="https://qeminco.github.io/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Qeminco\'blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-06-29 14:02:30'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/kunkun.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/wallhaven-l8wzr2.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Qeminco'blog"><img class="site-icon" src="/img/cat.png"/><span class="site-name">Qeminco'blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Qeminco'blog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题"><img class="post-bg" src="/img/14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-27T15:07:52.030Z" title="发表于 2024-06-27 23:07:52">2024-06-27</time></span></div><div class="content">1 安装node.js下载 | Node.js 中文网 (nodejs.cn)
+node -vnpm -v
+
+
+2 安装gitGit - 下载软件包 (git-scm.com) 官网下载速度慢
+Mirror 阿里镜像站，下载速度快
+一路默认安装即可。
+git --version
+
+
+3 安装hexo找个空文件夹执行以下命令：
+npm install -g hexo-clihexo -vhexo init
+
+
+
+
+安装依赖：
+npm install
+
+
+启动：
+hexo shexo s -p 4001  #如果想在其他端口运行
+
+
+
+4 创建github仓库仓库名：用户名.github.io 
+5 设置ssh秘钥git config --global user.name &quot;github用户名&quot;git config --global user.email github邮箱
+
+
+#-t指定要创建的密钥类型。可以使用：rsa1(SSH-1)、rsa(SSH-2)、dsa(SSH-2)ssh-keygen -t rsa
+
+一直按回车：
+
+记事本打开公钥文件id_rsa.pub ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi"><img class="post-bg" src="/img/26.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JNDI、ldap与rmi"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi">JNDI、ldap与rmi</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-26T16:00:00.000Z" title="发表于 2024-06-27 00:00:00">2024-06-27</time></span></div><div class="content">1 JNDIJava命名和目录接口（Java Naming and Directory Interface，缩写JNDI），是Java的一个目录服务应用程序接口（API），它提供一个目录系统，并将服务名称与对象关联起来，从而使得开发人员在开发过程中可以使用名称来访问对象。
+2 ldapLDAP 是轻型目录访问协议的缩写，是一种用于访问和维护分层目录信息的协议。
+3 rmiJava远程方法调用，即Java RMI（Java Remote Method Invocation），是Java编程语言里，一种用于实现远程过程调用的应用程序编程接口。它使客户机上运行的程序可以调用远程服务器上的对象。远程方法调用特性使Java编程人员能够在网络环境中分布操作。
+RMI全称为Remote Method Invocation，也就是远程方法调用，通俗点解释，就是跨越jvm，调用一个远程方法。众所周知，一般情况下java方法调用指的是同一个jvm内方法的调用，而RMI与之恰恰相反。
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE"><img class="post-bg" src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fastjson反序列化RCE"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE">Fastjson反序列化RCE</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-24T16:00:00.000Z" title="发表于 2024-06-25 00:00:00">2024-06-25</time></span></div><div class="content">1 Fastjson介绍Fastjson是一个Java 库，是阿里巴巴开源的JSON解析库，可以将Java对象转换为JSON字符串（序列化），也可以从 JSON 字符串转换为Java对象（反序列化）。
+2 AutoType介绍当一个类中包含了一个接口或抽象类，在使用Fastjson进行序列化的时候，会将子类型抹去，只保留接口或抽象类的类型，导致再进行反序列化时无法拿到原始类型。
+为了解决这个问题，在Fastjson中引入了AutoType机制，简单来说，既然无法正常反序列化是由于序列化时把原始类型擦除掉导致的，那么在序列化时，把类型信息给添加上就可以了，所以在使用AutoType机制进行序列化时，序列化出来的json数据会带上@type字段，以记录被序列化的类型，弥补类型擦除的问题。
+&#123;	&quot;@type&quot;:&quot;xxxxxxx&quot;	..........&#125;
+
+3 漏洞原理Fastjson在对json字符串进行反序列化的时候，会读取@type的内容，并且会调用这个类的setter方法。
+利用这个特性，攻击者可以构造一个json字符串，并使 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现"><img class="post-bg" src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud Gateway远程命令执行漏洞复现"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现">Spring Cloud Gateway远程命令执行漏洞复现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-22T16:00:00.000Z" title="发表于 2024-06-23 00:00:00">2024-06-23</time></span></div><div class="content">1 Spring Cloud Gateway 介绍Spring Cloud Gateway 是基于 Spring Framework 5、Spring Boot 2.0 和 Project Reactor 技术开发的网关，提供简单有效且统一的路由管理方式。
+2 漏洞说明某些使用Spring Colud Gateway的应用程序，若启用且暴露了Gateway Actuator接口，攻击者可以通过此接口，利用SpEL表达式进行命令注入。
+CVE编号：CVE-2022-22947
+此次漏洞复现版本：Spring Cloud Gateway 3.1.0
+3 影响的版本
+3.1.0
+3.0.0-3.0.6
+3.0.0之前的版本
+
+4 漏洞环境搭建4.1 新建Spring Boot项目服务器URL修改为阿里云的https://start.aliyun.com，否则下方Java版本下拉框没有8。因为国外服务商提倡使用Java较新的版本，所以不提供8了。
+类型选择Maven。
+
+Spring Boot版本选择2.6.13，并勾选Spring Web。
+
+本来我Spring Boot版本选择了2.4.2 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven"><img class="post-bg" src="/img/6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="idea配置Maven"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven">idea配置Maven</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-20T16:00:00.000Z" title="发表于 2024-06-21 00:00:00">2024-06-21</time></span></div><div class="content">1 Maven概述Maven用于管理Java项目的自动化构建和依赖。
+2 下载Maven官网：Maven – Download Apache Maven
+
+3 配置Maven环境变量新建MAVEN_HOME
+
+添加Path变量%MAVEN_HOME%\bin
+
+验证：
+
+4 设置本地仓库新建一个repository文件夹，最好创建在D盘，避免以后这个文件夹的jar包太多导致c盘空间不够。
+项目会先从本地仓库中寻找依赖，如果找不到，再会去中央仓库下载，下载下来的依赖包会被保存到本地仓库。
+
+在settings.xml文件中找到仓库配置，并修改。
+
+5 配置Maven下载镜像在mirrors标签里添加阿里云镜像的配置，加载依赖速度更快。
+&lt;!-- 阿里镜像 --&gt;&lt;mirror&gt;    &lt;id&gt;alimaven&lt;/id&gt;    &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;    &lt;name&gt;aliyun maven&lt;/name&gt;    &lt;url&gt;http://maven. ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2024/06/21/rce/" title="rce"><img class="post-bg" src="/img/16.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="rce"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/06/21/rce/" title="rce">rce</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-20T16:00:00.000Z" title="发表于 2024-06-21 00:00:00">2024-06-21</time></span></div><div class="content">
+  d17384dd115480b410a014719db93efec6a2aaad25bb377c8d561ba00f6658a9c2f8e06fa23463a4daf75d8c80456719090887ba283b9ab7d4babf8066cb9caeed4332fea6d591dc600e5cd89489fae97c3234f99070b70d2ecc476e5e8299442a5edc1a340061263e8f249e5b0fcec1069430958a9909ab1dd8a9db4a11865de53c8b7e5954c4204e7c85ef023a60211971175e4e86d93508689250b6554ca512f9515ba3de9ce6a67b09c6f767839048ded1865f646edea7cdf1486acadb51fc06b58125ee32223f5d00356b92ee64fd6038be3942de8ade03c62d0a7c55d102f889758a5e2ca195e0c6cde932c44bc98fec2ba5ab1083c ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2024/06/21/%E8%8B%A5%E4%BE%9D%E5%90%8E%E5%8F%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1rce/" title="若依后台定时任务rce"><img class="post-bg" src="/img/3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="若依后台定时任务rce"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/06/21/%E8%8B%A5%E4%BE%9D%E5%90%8E%E5%8F%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1rce/" title="若依后台定时任务rce">若依后台定时任务rce</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-20T16:00:00.000Z" title="发表于 2024-06-21 00:00:00">2024-06-21</time></span></div><div class="content">1 影响版本&lt;&#x3D;4.7.8
+2 搭建若依系统若依官方部署文档环境部署 | RuoYi
+2.1 下载https://gitee.com/y_project/RuoYi/releases
+下载4.7.8版本
+2.2 打开本地MySQL服务我用的MySQL5.7.26
+2.3 导入SQL文件创建一个名为ruoyi的数据库，并导入若依的SQL文件。
+
+
+2.4 idea配置若依项目Maven已配置。
+然后修改数据库名称及账号密码。
+
+修改Java版本。
+
+3 漏洞验证3.1 准备工作登录进去后，编辑id为2的定时任务，都打开。
+
+
+3.2 启用漏洞工具java -jar JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar -A 127.0.0.1
+
+
+3.3 payload十六进制编码复制生成的链接
+
+payload：
+javax.naming.InitialContext.lookup(&#x27;ldap://127.0.0.1:1389/ywrp1p&#x27;)
+
+转换成十六进制后：
+0x6A617661782E6E616D696E6 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2024/06/19/hexo%20d%E6%8A%A5%E9%94%99/" title="hexo d报错"><img class="post-bg" src="/img/17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexo d报错"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/06/19/hexo%20d%E6%8A%A5%E9%94%99/" title="hexo d报错">hexo d报错</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-18T16:00:00.000Z" title="发表于 2024-06-19 00:00:00">2024-06-19</time></span></div><div class="content">配置代理git config --global http.proxy 127.0.0.1:xxxxgit config --global https.proxy 127.0.0.1:xxxx
+
+​	命令中的主机号（127.0.0.1）是使用的代理的主机号（自己电脑有vpn那么本机可看做访问github的代理主机），即填入127.0.0.1即可，否则填入代理主机 ip(就是网上找的那个ip)​	命令中的端口号（xxxx）为代理软件（代理软件不显示端口的话，就去Windows中的代理服务器设置中查看）或代理主机的监听IP，可以从代理服务器配置中获得，否则填入网上找的那个端口port。
+查看代理git config -lgit config --global --get http.proxygit config --global --get https.proxy
+
+取消代理git config --global --unset-all http.proxygit config --global --unset-all https.proxy
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2024/06/18/%E4%BC%AA%E5%8D%8F%E8%AE%AE%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" title="伪协议漏洞"><img class="post-bg" src="/img/38.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="伪协议漏洞"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/06/18/%E4%BC%AA%E5%8D%8F%E8%AE%AE%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" title="伪协议漏洞">伪协议漏洞</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-17T16:00:00.000Z" title="发表于 2024-06-18 00:00:00">2024-06-18</time></span></div><div class="content">
+  87c5da862cc50496c177a39b6540143991a21dfcff4a8e83b7a26b6fbd6eb1d92cf0c7dd665f7ee2d1b97e064544d15f2f981dcbdc87e5ea0844d842d1c9987afa7fe4e93d9dc87e47da37e54d143d6ac03772c2f45e4732cd198aefd91ea1edaf4721a9baef19f0130cab608066b2dcbf1f396cee56afdf0a0a79efb79fe0be470f572a370a37239384154a838fb9b143ed68f4b7ae2d9a8068938e4ae7d5e1fb99394f9f46034627ae48a190231aa79bedb611ff62792b504232e7402abf5c9e5210b310947ed86e0f375019cf05b0e8feda5d8b9ed38d9301eb73b6786a34d3e9dcca42f33df905983c1e2471b58995c78affeb991a372 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2024/06/18/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86%E5%8D%8F%E8%AE%AE/" title="远程管理协议"><img class="post-bg" src="/img/18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="远程管理协议"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/06/18/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86%E5%8D%8F%E8%AE%AE/" title="远程管理协议">远程管理协议</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-17T16:00:00.000Z" title="发表于 2024-06-18 00:00:00">2024-06-18</time></span></div><div class="content">提到远程管理，通常指的是远程管理服务器，而非个人计算机。个人计算机可以随时拿来用，服务器通常放置在机房中，用户无法直接接触到服务器硬件，只能采用远程管理的方式。
+远程管理，实际上就是计算机（服务器）之间通过网络进行数据传输（信息交换）的过程，与浏览器需要 HTTP 协议（超文本传输协议）浏览网页一样，远程管理同样需要远程管理协议的支持。
+目前，常用的远程管理协议有以下 4 种：
+
+RDP（remote desktop protocol）协议：远程桌面协议，大部分 Windows 系统都默认支持此协议，Windows 系统中的远程桌面管理就基于该协议。
+RFB（Remote FrameBuffer）协议：图形化远程管理协议，VNC 远程管理工具就基于此协议。
+Telnet：命令行界面远程管理协议，几乎所有的操作系统都默认支持此协议。此协议的特点是，在进行数据传送时使用明文传输的方式，也就是不对数据进行加密。
+SSH（Secure Shell）协议：命令行界面远程管理协议，几乎所有操作系统都默认支持此协议。和 Telnet 不同，该协议在数据传输时会对数据进行加密并压缩，因此使用此协议传输 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/kunkun.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Qeminco</div><div class="author-info__description">学习如逆水行舟，不进则退。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">生活明朗，万物可爱。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题"><img src="/img/14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题">无题</a><time datetime="2024-06-27T15:07:52.030Z" title="发表于 2024-06-27 23:07:52">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi"><img src="/img/26.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JNDI、ldap与rmi"/></a><div class="content"><a class="title" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi">JNDI、ldap与rmi</a><time datetime="2024-06-26T16:00:00.000Z" title="发表于 2024-06-27 00:00:00">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fastjson反序列化RCE"/></a><div class="content"><a class="title" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE">Fastjson反序列化RCE</a><time datetime="2024-06-24T16:00:00.000Z" title="发表于 2024-06-25 00:00:00">2024-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud Gateway远程命令执行漏洞复现"/></a><div class="content"><a class="title" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现">Spring Cloud Gateway远程命令执行漏洞复现</a><time datetime="2024-06-22T16:00:00.000Z" title="发表于 2024-06-23 00:00:00">2024-06-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven"><img src="/img/6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="idea配置Maven"/></a><div class="content"><a class="title" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven">idea配置Maven</a><time datetime="2024-06-20T16:00:00.000Z" title="发表于 2024-06-21 00:00:00">2024-06-21</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.35em; color: rgb(87, 15, 152)">工具</a><a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" style="font-size: 1.35em; color: rgb(76, 150, 24)">网络协议</a><a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 1.15em; color: rgb(105, 45, 71)">反序列化</a><a href="/tags/Fastjson/" style="font-size: 1.15em; color: rgb(43, 20, 19)">Fastjson</a><a href="/tags/%E6%BC%8F%E6%B4%9E/" style="font-size: 1.45em; color: rgb(130, 46, 37)">漏洞</a><a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1.15em; color: rgb(143, 29, 38)">网络</a><a href="/tags/Java/" style="font-size: 1.15em; color: rgb(64, 22, 178)">Java</a><a href="/tags/%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" style="font-size: 1.25em; color: rgb(43, 30, 52)">远程命令执行</a><a href="/tags/spring/" style="font-size: 1.15em; color: rgb(6, 108, 21)">spring</a><a href="/tags/PHP/" style="font-size: 1.15em; color: rgb(168, 42, 135)">PHP</a><a href="/tags/web%E6%BC%8F%E6%B4%9E/" style="font-size: 1.35em; color: rgb(53, 50, 157)">web漏洞</a><a href="/tags/VMware/" style="font-size: 1.15em; color: rgb(177, 105, 59)">VMware</a><a href="/tags/IIS/" style="font-size: 1.15em; color: rgb(120, 161, 196)">IIS</a><a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 1.15em; color: rgb(133, 198, 138)">信息收集</a><a href="/tags/Windows/" style="font-size: 1.45em; color: rgb(22, 178, 112)">Windows</a><a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 1.15em; color: rgb(23, 88, 197)">容器</a><a href="/tags/hexo/" style="font-size: 1.15em; color: rgb(82, 11, 147)">hexo</a><a href="/tags/dvwa/" style="font-size: 1.15em; color: rgb(34, 192, 136)">dvwa</a><a href="/tags/python/" style="font-size: 1.35em; color: rgb(185, 47, 171)">python</a><a href="/tags/java/" style="font-size: 1.15em; color: rgb(113, 44, 2)">java</a><a href="/tags/tomcat/" style="font-size: 1.15em; color: rgb(96, 88, 138)">tomcat</a><a href="/tags/kali/" style="font-size: 1.15em; color: rgb(95, 188, 28)">kali</a><a href="/tags/Linux/" style="font-size: 1.45em; color: rgb(127, 106, 91)">Linux</a><a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 1.25em; color: rgb(110, 75, 29)">杂记</a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.15em; color: rgb(164, 91, 23)">数据库</a><a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" style="font-size: 1.25em; color: rgb(44, 174, 170)">内网穿透</a><a href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/" style="font-size: 1.15em; color: rgb(165, 180, 176)">编辑器</a><a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 1.15em; color: rgb(40, 45, 44)">编码</a><a href="/tags/%E9%98%B2%E5%BE%A1/" style="font-size: 1.15em; color: rgb(153, 124, 137)">防御</a><a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 1.15em; color: rgb(46, 200, 180)">渗透测试</a><a href="/tags/%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" style="font-size: 1.15em; color: rgb(27, 29, 163)">数据格式</a><a href="/tags/%E7%AD%89%E4%BF%9D/" style="font-size: 1.45em; color: rgb(80, 199, 15)">等保</a><a href="/tags/%E5%9F%9F%E6%9C%8D%E5%8A%A1/" style="font-size: 1.15em; color: rgb(81, 106, 3)">域服务</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 1.25em; color: rgb(68, 113, 16)">计算机网络</a><a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" style="font-size: 1.15em; color: rgb(174, 131, 154)">漏洞复现</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">13</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">19</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">六月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">58</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-06-29T06:02:30.030Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/wallhaven-l8wzr2.png')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By Qeminco</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到我的博客~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

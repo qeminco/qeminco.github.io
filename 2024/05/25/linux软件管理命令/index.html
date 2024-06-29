@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux软件管理命令 | Qeminco'blog</title><meta name="author" content="Qeminco"><meta name="copyright" content="Qeminco"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="修复依赖包sudo apt –fix-broken install 单机命令rpm 与 dbkgrpm命令用于管理软件。rpm原本是 Red Hat Linux 发行版专门用来管理 Linux   各项套件的程序，由于它遵循 GPL 规则且功能强大方便，因而广受欢迎。逐渐受到其他发行版的采用。RPM 套件管理方式的出现，让 Linux   易于安装，升级，间接提升了 Linux 的适用度。能被rp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux软件管理命令">
+<meta property="og:url" content="https://qeminco.github.io/2024/05/25/linux%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Qeminco&#39;blog">
+<meta property="og:description" content="修复依赖包sudo apt –fix-broken install 单机命令rpm 与 dbkgrpm命令用于管理软件。rpm原本是 Red Hat Linux 发行版专门用来管理 Linux   各项套件的程序，由于它遵循 GPL 规则且功能强大方便，因而广受欢迎。逐渐受到其他发行版的采用。RPM 套件管理方式的出现，让 Linux   易于安装，升级，间接提升了 Linux 的适用度。能被rp">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qeminco.github.io/img/18.jpg">
+<meta property="article:published_time" content="2024-05-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-23T08:09:09.011Z">
+<meta property="article:author" content="Qeminco">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qeminco.github.io/img/18.jpg"><link rel="shortcut icon" href="/img/cat.png"><link rel="canonical" href="https://qeminco.github.io/2024/05/25/linux%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux软件管理命令',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-23 16:09:09'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/kunkun.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/18.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Qeminco'blog"><img class="site-icon" src="/img/cat.png"/><span class="site-name">Qeminco'blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux软件管理命令</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-05-24T16:00:00.000Z" title="发表于 2024-05-25 00:00:00">2024-05-25</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="修复依赖包"><a href="#修复依赖包" class="headerlink" title="修复依赖包"></a>修复依赖包</h1><p>sudo apt –fix-broken install</p>
+<h1 id="单机命令"><a href="#单机命令" class="headerlink" title="单机命令"></a>单机命令</h1><h2 id="rpm-与-dbkg"><a href="#rpm-与-dbkg" class="headerlink" title="rpm 与 dbkg"></a>rpm 与 dbkg</h2><p><code>rpm</code>命令用于管理软件。rpm原本是 Red Hat Linux 发行版专门用来管理 Linux   各项套件的程序，由于它遵循 GPL 规则且功能强大方便，因而广受欢迎。逐渐受到其他发行版的采用。RPM 套件管理方式的出现，让 Linux   易于安装，升级，间接提升了 Linux 的适用度。能被<code>rpm</code>命令安装的软件包一般以<code>.rpm</code>为文件后缀。</p>
+<p><code>dpkg</code> 是为”Debian”操作系统专门开发的套件管理系统，用于软件的安装，更新和移除。能被<code>dpkg</code>命令安装的软件包一般以<code>.deb</code>为文件后缀。</p>
+<p><strong>常见命令</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -ivh [package_name]         <span class="comment">#安装软件包，v显示详细信息，h友好显示</span></span><br><span class="line">rpm -evh [package_name]         <span class="comment">#卸载软件</span></span><br><span class="line">rpm -qlp *.rpm                  <span class="comment">#列出rpm包的内容</span></span><br><span class="line">rpm -qa |grep [字符串]           <span class="comment">#在已安装的所有软件中查询包含某字符串的软件版本</span></span><br><span class="line">rpm -ql [软件名]                 <span class="comment">#列出该软件所有文件与目录</span></span><br><span class="line">rpm -qc [软件名]                 <span class="comment">#列出软件的所有设置文件</span></span><br><span class="line">rpm -qR [软件名]                 <span class="comment">#查询某软件的依赖</span></span><br><span class="line">rpm -qf [文件名]                 <span class="comment">#查询文件属于哪个软件包</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dpkg -i [package_name]     <span class="comment"># 安装软件包</span></span><br><span class="line">dpkg -r [package_name]     <span class="comment"># 移除软件（保留配置）</span></span><br><span class="line">dpkg -P [package_name]     <span class="comment"># 移除软件（不保留配置）</span></span><br><span class="line">dpkg -c *.deb              <span class="comment"># 列出deb包的内容</span></span><br><span class="line">dpkg -l [软件名]            <span class="comment"># 配合|grep，查找主机包</span></span><br><span class="line">dpkg -s [软件名]            <span class="comment"># 查找包的详细信息</span></span><br><span class="line">dpkg -L [软件名]            <span class="comment"># 查看已安装的软件包，都存在系统哪些文件</span></span><br><span class="line">dpkg -S [文件名]            <span class="comment"># 反查文件属于哪个包</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">rpm</th>
+<th align="center">dpkg</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">安装</td>
+<td align="center">rpm -ivh [package_name]</td>
+<td align="center">dpkg -i [package_name]</td>
+</tr>
+<tr>
+<td align="center">卸载</td>
+<td align="center">rpm -evh [package_name]</td>
+<td align="center">dpkg -r&#x2F;P [package_name]</td>
+</tr>
+<tr>
+<td align="center">列出包的内容</td>
+<td align="center">rpm -qlp *.rpm</td>
+<td align="center">dpkg -c *.deb</td>
+</tr>
+<tr>
+<td align="center">列出所有已安装的包</td>
+<td align="center">rpm -qa</td>
+<td align="center">dpkg -l</td>
+</tr>
+<tr>
+<td align="center">列出该软件所有文件与目录</td>
+<td align="center">rpm -ql [软件名]</td>
+<td align="center">dpkg -L [软件名]</td>
+</tr>
+<tr>
+<td align="center">查询文件属于哪个软件包</td>
+<td align="center">rpm -qf</td>
+<td align="center">dpkg -S [文件名]</td>
+</tr>
+</tbody></table>
+<h1 id="联机命令"><a href="#联机命令" class="headerlink" title="联机命令"></a>联机命令</h1><h2 id="yum-与-apt"><a href="#yum-与-apt" class="headerlink" title="yum 与 apt"></a>yum 与 apt</h2><p><code>apt</code>是一个在Debian中的Shell前端软件包管理器。<code>apt</code>命令提供了查找、安装、升级、删除某一个、一组甚至全部软件包的命令，而且命令简洁而又好记。<code>apt</code>命令执行需要超级管理员权限(root)</p>
+<p><code>yum</code>命令是一个在 Fedora 和 RedHat 以及 SUSE 中的 Shell 前端软件包管理器。</p>
+<p>基于RPM包管理，能够从指定的服务器自动下载RPM包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软件包，无须繁琐地一次次下载、安装。yum提供了查找、安装、删除某一个、一组甚至全部软件包的命令。</p>
+<p>参数：</p>
+<ul>
+<li>-y：执行yum或apt-get时加次参数，代表[yes&#x2F;no]时，默认yes，省去中途输入yes的麻烦。</li>
+</ul>
+<p><strong>常见命令</strong> </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum makecache                         <span class="comment">#更新源（安装新源后执行）</span></span><br><span class="line">yum clean all                         <span class="comment">#清除缓存目录（/var/cache/yum）下的软件包及旧的headers</span></span><br><span class="line">yum list |grep                        <span class="comment">#显示所有已经安装和可以安装的程序包</span></span><br><span class="line">yum info [package-name]               <span class="comment">#显示安装包信息</span></span><br><span class="line">yum -y install [package-name]         <span class="comment">#安装软件,默认选yes</span></span><br><span class="line">yum remove [package-name]             <span class="comment">#卸载</span></span><br><span class="line">yum deplist rpm                       <span class="comment">#查看程序rpm依赖情况</span></span><br><span class="line">yum update                            <span class="comment">#更新全部软件包</span></span><br><span class="line">yum group list                        <span class="comment">#列出组</span></span><br><span class="line">yum group install <span class="string">&quot;Security Tools&quot;</span>    <span class="comment">#安装‘Security Tools’软件组</span></span><br><span class="line">yum search                            <span class="comment">#检索安装包</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install      <span class="comment">#安装软件包                </span></span><br><span class="line">apt-get remove       <span class="comment">#仅卸载软件，但是并不卸载配置文件</span></span><br><span class="line">apt-get purge        <span class="comment">#卸载指令，同时卸载相应的配置文件</span></span><br><span class="line">apt-get autoremove   <span class="comment">#卸载软件的时候同时卸载那些当初作为依赖但是现在并不需要的包</span></span><br><span class="line"></span><br><span class="line">apt-get update       <span class="comment">#更新菜单</span></span><br><span class="line">apt-get upgrade      <span class="comment">#更新所有已安装的软件包</span></span><br><span class="line">apt-get dist-upgrade <span class="comment">#自动处理依赖包升级</span></span><br><span class="line"><span class="comment">#upgrade:系统将现有的Package升级,如果有相依性的问题,而此相依性需要安装其它新的Package或影响到其它Package的相依性时,此Package就不会被升级,会保留下来。</span></span><br><span class="line"><span class="comment">#dist-upgrade:可以聪明的解决相依性的问题,如果有相依性问题,需要安装/移除新的Package,就会试着去安装/移除它。(所以通常这个会被认为是有点风险的升级)</span></span><br><span class="line"></span><br><span class="line">apt-cache search     <span class="comment">#用关键字搜索包</span></span><br><span class="line">apt-cache show       <span class="comment">#显示特定包的基本信息</span></span><br><span class="line">apt-cache depends    <span class="comment">#列出包的依赖</span></span><br><span class="line">apt-get clean        <span class="comment">#清理本地包占用的磁盘空间(/var/cache/apt/archives)</span></span><br><span class="line">apt-get clean all    <span class="comment">#清除菜单，并清除install下载的deb包(/var/cache/apt/archives)</span></span><br></pre></td></tr></table></figure>
+<h2 id="dnf-命令"><a href="#dnf-命令" class="headerlink" title="dnf 命令"></a>dnf 命令</h2><p><code>DNF</code>是新一代的rpm软件包管理器。它正在逐步取代<code>yum</code>命令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dnf repolist                                       <span class="comment">#该命令用于显示系统中可用的 DNF 软件库</span></span><br><span class="line">dnf repolist all                                   <span class="comment">#该命令用于显示系统中可用和不可用的所有的 DNF 软件库</span></span><br><span class="line">dnf list                                           <span class="comment">#用户系统上的所有来自软件库的可用软件包和所有已经安装在系统上的软件包</span></span><br><span class="line">dnf list installed                                 <span class="comment">#该命令用于列出所有安装了的 RPM 包</span></span><br><span class="line">dnf list available                                 <span class="comment">#用于列出来自所有可用软件库的可供安装的软件包</span></span><br><span class="line">dnf search [pakage]                                <span class="comment">#用该命令来搜索软件包</span></span><br><span class="line">dnf provides /bin/bash                             <span class="comment">#查找某一文件的提供者</span></span><br><span class="line">dnf info nano                                      <span class="comment">#查看软件包详情</span></span><br><span class="line">dnf install [pakage]                               <span class="comment">#安装软件包</span></span><br><span class="line">dnf update systemd                                 <span class="comment">#该命令用于升级指定软件包</span></span><br><span class="line">dnf check-update                                   <span class="comment">#该命令用于检查系统中所有软件包的更新</span></span><br><span class="line">dnf update                                         <span class="comment">#该命令用于升级系统中所有有可用升级的软件包</span></span><br><span class="line">dnf remove [pakage]                                <span class="comment">#删除系统中指定的软件包</span></span><br><span class="line">dnf autoremove                                     <span class="comment">#删除无用孤立的软件包</span></span><br><span class="line">dnf clean all                                      <span class="comment">#删除缓存的无用软件包</span></span><br><span class="line">dnf <span class="built_in">history</span>                                        <span class="comment">#查看您系统上 DNF 命令的执行历史</span></span><br><span class="line">dnf grouplist                                      <span class="comment">#该命令用于列出所有的软件包组</span></span><br><span class="line">dnf groupinstall ‘Educational Software’            <span class="comment">#该命令用于安装一个软件包组</span></span><br><span class="line">dnf groupupdate ‘Educational Software’             <span class="comment">#升级一个软件包组中的软件包</span></span><br><span class="line">dnf groupremove ‘Educational Software’             <span class="comment">#该命令用于删除一个软件包组</span></span><br><span class="line">dnf reinstall [pakage]                             <span class="comment">#该命令用于重新安装特定软件包</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="系统源"><a href="#系统源" class="headerlink" title="系统源"></a>系统源</h1><h2 id="apt-源配置"><a href="#apt-源配置" class="headerlink" title="apt 源配置"></a>apt 源配置</h2><p><code>apt</code>命令更新和安装软件包是从软件安装源中请求的。</p>
+<p>kali系统的源文件在<code>/etc/apt/sources.list</code>。</p>
+<p>常见kali源：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#官方源</span><br><span class="line">deb http://http.kali.org/kali kali-rolling main contrib non-free</span><br><span class="line">#中科大</span><br><span class="line">deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br><span class="line">deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br><span class="line">#阿里云</span><br><span class="line">deb http://mirrors.a/kali kali-rolling main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib</span><br><span class="line">#清华大学</span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free</span><br></pre></td></tr></table></figure>
+
+<h2 id="yum-源配置"><a href="#yum-源配置" class="headerlink" title="yum 源配置"></a>yum 源配置</h2><p>在centos中yum源文件存储在<code>/etc/yum.repos.d/</code>目录中。</p>
+<p>换源需要把原来的 <code>.repos</code> 文件重命名为 <code>.repos.bak</code> 不让系统读取到 repos 结尾的文件，再下载另一个源的 repos 文件即可，想换回来就再次重命名操作一下。</p>
+<p>repo文件的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[baseos]</span><br><span class="line">name=Rocky Linux $releasever - BaseOS</span><br><span class="line">mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&amp;repo=BaseOS-$releasever</span><br><span class="line">#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/BaseOS/$basearch/os/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial</span><br></pre></td></tr></table></figure>
+
+<p><strong>epel源</strong>是redhat系比较常用的源，它不属于centos，但是它比centos官方源的软件更多、更全。</p>
+<p>EPEL (Extra Packages for Enterprise Linux)是基于Fedora的一个项目，为“红帽系”的操作系统提供额外的软件包，适用于RHEL、CentOS和Scientific Linux.</p>
+<p>安装epel源只需要安装一个叫”epel-release”的软件包，这个软件包会自动配置yum的软件仓库。</p>
+<p>命令为：<code>dnf install -y epel-release</code> </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://qeminco.github.io">Qeminco</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://qeminco.github.io/2024/05/25/linux%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/">https://qeminco.github.io/2024/05/25/linux软件管理命令/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://qeminco.github.io" target="_blank">Qeminco'blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/05/21/linux%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" title="Linux常用配置文件"><img class="cover" src="/img/65.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-21</div><div class="title">Linux常用配置文件</div></div></a></div><div><a href="/2024/05/11/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Linux常用命令"><img class="cover" src="/img/41.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-11</div><div class="title">Linux常用命令</div></div></a></div><div><a href="/2024/05/25/linux%E6%9C%8D%E5%8A%A1/" title="Linux服务"><img class="cover" src="/img/18.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-25</div><div class="title">Linux服务</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/kunkun.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Qeminco</div><div class="author-info__description">学习如逆水行舟，不进则退。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">生活明朗，万物可爱。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E4%BE%9D%E8%B5%96%E5%8C%85"><span class="toc-number">1.</span> <span class="toc-text">修复依赖包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%95%E6%9C%BA%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">单机命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#rpm-%E4%B8%8E-dbkg"><span class="toc-number">2.1.</span> <span class="toc-text">rpm 与 dbkg</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%81%94%E6%9C%BA%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">联机命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#yum-%E4%B8%8E-apt"><span class="toc-number">3.1.</span> <span class="toc-text">yum 与 apt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dnf-%E5%91%BD%E4%BB%A4"><span class="toc-number">3.2.</span> <span class="toc-text">dnf 命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%BA%90"><span class="toc-number">4.</span> <span class="toc-text">系统源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#apt-%E6%BA%90%E9%85%8D%E7%BD%AE"><span class="toc-number">4.1.</span> <span class="toc-text">apt 源配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yum-%E6%BA%90%E9%85%8D%E7%BD%AE"><span class="toc-number">4.2.</span> <span class="toc-text">yum 源配置</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题"><img src="/img/14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题">无题</a><time datetime="2024-06-27T15:07:52.030Z" title="发表于 2024-06-27 23:07:52">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi"><img src="/img/26.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JNDI、ldap与rmi"/></a><div class="content"><a class="title" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi">JNDI、ldap与rmi</a><time datetime="2024-06-26T16:00:00.000Z" title="发表于 2024-06-27 00:00:00">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fastjson反序列化RCE"/></a><div class="content"><a class="title" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE">Fastjson反序列化RCE</a><time datetime="2024-06-24T16:00:00.000Z" title="发表于 2024-06-25 00:00:00">2024-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud Gateway远程命令执行漏洞复现"/></a><div class="content"><a class="title" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现">Spring Cloud Gateway远程命令执行漏洞复现</a><time datetime="2024-06-22T16:00:00.000Z" title="发表于 2024-06-23 00:00:00">2024-06-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven"><img src="/img/6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="idea配置Maven"/></a><div class="content"><a class="title" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven">idea配置Maven</a><time datetime="2024-06-20T16:00:00.000Z" title="发表于 2024-06-21 00:00:00">2024-06-21</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/18.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By Qeminco</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到我的博客~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://qeminco-twikoo.hf.space',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://qeminco-twikoo.hf.space',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

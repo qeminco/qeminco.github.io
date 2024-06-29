@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计算机网络模型 | Qeminco'blog</title><meta name="author" content="Qeminco"><meta name="copyright" content="Qeminco"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1 概述计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统 衡量计算机网络的主要指标: 带宽　　描述在一定时间范围内能够从一个节点传送到另一个节点的数据量,通常以bps为单位,例如家用网络带宽为500Mbps延迟　　描述网络上数据从一个节点传送到另一个节点所经历的时间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络模型">
+<meta property="og:url" content="https://qeminco.github.io/2024/05/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.html">
+<meta property="og:site_name" content="Qeminco&#39;blog">
+<meta property="og:description" content="1 概述计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统 衡量计算机网络的主要指标: 带宽　　描述在一定时间范围内能够从一个节点传送到另一个节点的数据量,通常以bps为单位,例如家用网络带宽为500Mbps延迟　　描述网络上数据从一个节点传送到另一个节点所经历的时间">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qeminco.github.io/img/63.jpg">
+<meta property="article:published_time" content="2024-05-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-24T04:51:55.114Z">
+<meta property="article:author" content="Qeminco">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qeminco.github.io/img/63.jpg"><link rel="shortcut icon" href="/img/cat.png"><link rel="canonical" href="https://qeminco.github.io/2024/05/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机网络模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-24 12:51:55'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/kunkun.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/63.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Qeminco'blog"><img class="site-icon" src="/img/cat.png"/><span class="site-name">Qeminco'blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机网络模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-05-24T16:00:00.000Z" title="发表于 2024-05-25 00:00:00">2024-05-25</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h1><p>计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统</p>
+<p>衡量计算机网络的主要指标:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">带宽　　描述在一定时间范围内能够从一个节点传送到另一个节点的数据量,通常以bps为单位,例如家用网络带宽为500Mbps</span><br><span class="line">延迟　　描述网络上数据从一个节点传送到另一个节点所经历的时间</span><br></pre></td></tr></table></figure>
+
+<p>网络模型一般是指OSI七层参考模型和TCP&#x2F;IP四层参考模型。四层模型比七层模型更常用。</p>
+<p>OSI是国际组织提出，TCP&#x2F;IP是美国提出。</p>
+<h1 id="2-OSI七层模型"><a href="#2-OSI七层模型" class="headerlink" title="2 OSI七层模型"></a>2 OSI七层模型</h1><p>开放系统互连参考模型 (Open System Interconnect 简称OSI）是国际标准化组织(ISO)和国际电报电话咨询委员会(CCITT)联合制定的开放系统互连参考模型，为开放式互连信息系统提供了一种功能结构的框架。</p>
+<p>它从低到高分别是：物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。</p>
+<p><img src="/img/20230206212802.png"></p>
+<p>网络数据包的封装与解封装类似于快递物品，每一层接收到数据后会进行特定类型的打包。</p>
+<p><img src="/img/20230206212833.png"></p>
+<p><strong>物理层</strong>: 建立和维护用于传输和接受二进制信息的物理链路</p>
+<p>物理层是OSI分层结构体系中最重要、最基础的一层，它建立在传输媒介基础上，起建立、维护和取消物理连接作用，实现设备之间的物理接口。 • 物理层之接收和发送一串比特(bit)流，不考虑信息的意义和信息结构。 • 物理层包括对连接到网络上的设备描述其各种机械的、电气的、功能的规定。</p>
+<p>物理层要形成适合数据传输需要的实体，为数据传送服务： 一、保证数据按位传输的正确性； 二、向数据链路层提供一个透明的位传输； 三、提供足够的带宽(带宽是指每秒钟内能通过的比特(BIT)数)，以减少信道上的拥塞。 传输数据的方式能满足点到点，一点到多点，串行或并行，半双工或全双工，同步或异步传输的需要。 完成物理层的一些管理工作，如在数据终端设备、数据通信和交换设备等设备之间完成对数据链路的建立、保持和拆除操作。 物理层的典型设备：<strong>光纤、同轴电缆、双绞线、中继器和集线器</strong></p>
+<p><strong>数据链路层</strong>：为物理链路提供可靠的数据传输，包括错误的检测和修正（<strong>跟MAC地址挂钩</strong>）</p>
+<p>链路层的主要功能： 链路层的功能是实现系统实体间二进制信息块的正确传输 。 为网络层提供可靠无错误的数据信息 在数据链路中解决信息模式、操作模式、差错控制、流量控制、信息交换过程和通信控制规程的问题链路层是为网络层提供数据传送服务的，这种服务要依靠本层具备的功能来实现。 链路层应具备如下功能： 链路连接的建立，拆除，分离。 帧定界和帧同步。 链路层的数据传输单元是帧，协议不同，帧的长短和界面也有差别，但无论如何必须对帧进行定界。 数据链路层的典型设备：<strong>二层交换机、网桥、网卡</strong></p>
+<p><strong>网络层:</strong> 提供网络中的数据包寻址和传输服务</p>
+<p>网络层的主要功能：介于运输层和数据链路层之间。它在数据链路层提供的两个相邻端点之间的数据帧的传送功能上，进一步管理网络中的数据通信、将数据设法从源端经过若干个中间节点传送到目的端，从而向运输层提供最基本的端到端的数据传送服务。目的是实现两个端系统之间的数据透明传送，具体功能包括寻址和路由选择、连接的建立、保持和终止等。网络层的主要功能包括：建立和拆除网络连接、路径选择和中继、网络连接多路复用、分段和组块、服务选择和传输和流量控制。 网络层的典型设备：<strong>路由器</strong></p>
+<p>路由协议：RIP（适用于小型网络），OSPF（适用于中型网络），BGP（适用于大型网络）。</p>
+<p><strong>传输层</strong>: 为端点之间提供透明的、可靠的数据传输、端到端错误修复、流量控制</p>
+<p>传输层提供了主机应用程序进程之间的端到端的服务，基本功能如下： (1) 分割与重组数据 (2) 按端口号寻址 (3) 连接管理 (4) 差错控制和流量控制,纠错的功能 传输层要向会话层提供通信服务的可靠性，避免报文的出错、丢失、延迟时间紊乱、重复、乱序等差错。</p>
+<p><strong>会话层</strong>:控制计算机之间的会话</p>
+<p>会话层（SESSION LAYER）允许不同机器上的用户之间建立会话关系。会话层循序进行类似的传输层的普通数据的传送，在某些场合还提供了一些有用的增强型服务。允许用户利用一次会话在远端的分时系统上登陆，或者在两台机器间传递文件。 会话层提供的服务之一是管理对话控制。会话层允许信息同时双向传输，或任一时刻只能单向传输。如果属于后者，类似于物理信道上的半双工模式，会话层将记录此时该轮到哪一方。一种与对话控制有关的服务是令牌管理（token management）。有些协议会保证双方不能同时进行同样的操作，这一点很重要。为了管理这些活动，会话层提供了令牌，令牌可以在会话双方之间移动，只有持有令牌的一方可以执行某种关键性操作。另一种会话层服务是同步。如果在平均每小时出现一次大故障的网络上，两台机器简要进行一次两小时的文件传输，试想会出现什么样的情况呢？每一次传输中途失败后，都不得不重新传送这个文件。当网络再次出现大故障时，可能又会半途而废。为解决这个问题，会话层提供了一种方法，即在数据中插入同步点。每次网络出现故障后，仅仅重传最后一个同步点以后的数据（这个其实就是断点下载的原理）</p>
+<p><strong>表示层</strong>:提供数据转换服务，如加密、压缩、格式化</p>
+<p>表示层为在应用过程之间传送的信息提供表示方法的服务，它只关心信息发出的语法和语义。</p>
+<p>表示层为应用层提供的服务有三项内容</p>
+<p>语法转换：语法转换涉及代码转换和字符集的转换，数据格式的修改、数据结构操作的适配、数据压缩、数据加密等。</p>
+<p>语法选择：语法选择是提供初始选择的一种语法和随后修改这种选择的手段。</p>
+<p>联接管理：利用会话层提供的服务建立表示联接，管理在这一联接之上的数据运输和同步控制，以及正常或非正常地终止联接。</p>
+<p><strong>应用层</strong>:协助应用程序与网络通讯</p>
+<p>应用层直接和应用程序接口并提供常见的网络应用服务。应用层也向表示层发出请求。应用层是开放系统的最高层,是直接为应用进程提供服务的。其作用是在实现多个系统应用进程相互通信的同时,完成一系列业务处理所需的服务.其服务元素分为两类:公共应用服务元素CASE和特定应用服务元素SASE. CASE提供最基本的服务,它成为应用层中任何用户和任何服务元素的用户，主要为应用进程通信,分布系统实现提供基本的控制机制；特定服务SASE则要满足一些特定服务,如文卷传送,访问管理,作业传送,银行事务,订单输入等。这些将涉及到虚拟终端,作业传送与操作,文卷传送及访问管理,远程数据库访问,图形核心系统,开放系统互连管理等等。</p>
+<h1 id="3-TCP-IP四层模型"><a href="#3-TCP-IP四层模型" class="headerlink" title="3 TCP&#x2F;IP四层模型"></a>3 TCP&#x2F;IP四层模型</h1><p>TCP&#x2F;IP模型与OSI参考模型有些类似，将OSI中的会话层、表示层去掉，并将数据链路层和物理层合并成网络接口层，TCP&#x2F;IP支持所有标准的数据链路层和物理层协议。</p>
+<p><img src="/img/image-20240601231848889.png" alt="image-20240601231848889"></p>
+<p>TCP&#x2F;IP模型中每一层的功能如下图：</p>
+<p><img src="/img/image-20240601231930378.png" alt="image-20240601231930378"></p>
+<p>OSI七层模型与TCP&#x2F;IP模型，所对应的功能与之哪些协议工作的大致清单可参考下图：</p>
+<p><img src="/img/image-20240601233757020.png" alt="image-20240601233757020"></p>
+<h1 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h1><p>地址解析协议，即ARP（Address Resolution Protocol），是根据IP地址获取物理地址的一个TCP&#x2F;IP协议。主机发送信息时将包含目标IP地址的ARP请求广播到网络上的所有主机，并接收返回消息，以此确定目标的物理地址；收到返回消息后将该IP地址和物理地址存入本机ARP缓存中并保留一定时间，下次请求时直接查询ARP缓存以节约资源。</p>
+<p>地址解析协议是建立在网络中各个主机互相信任的基础上的，网络上的主机可以自主发送ARP应答消息，其他主机收到应答报文时不会检测该报文的真实性就会将其记入本机ARP缓存；由此攻击者就可以向某一主机发送伪ARP应答报文，使其发送的信息无法到达预期的主机或到达错误的主机，这就构成了一个ARP欺骗。</p>
+<p>ARP命令可用于查询本机ARP缓存中IP地址和MAC地址的对应关系、添加或删除静态对应关系等。</p>
+<p>相关协议有RARP、代理ARP。NDP用于在IPv6中代替地址解析协议。</p>
+<p>工作过程<br>主机A的IP地址为192.168.1.1，MAC地址为0A-11-22-33-44-01；<br>主机B的IP地址为192.168.1.2，MAC地址为0A-11-22-33-44-02；<br>当主机A要与主机B通信时，地址解析协议可以将主机B的IP地址（192.168.1.2）解析成主机B的MAC地址，以下为工作流程：<br>第1步：根据主机A上的路由表内容，IP确定用于访问主机B的转发IP地址是192.168.1.2。然后A主机在自己的本地ARP缓存中检查主机B的匹配MAC地址。<br>第2步：如果主机A在ARP缓存中没有找到映射，它将询问192.168.1.2的硬件地址，从而将ARP请求帧广播到本地网络上的所有主机。源主机A的IP地址和MAC地址都包括在ARP请求中。本地网络上的每台主机都接收到ARP请求并且检查是否与自己的IP地址匹配。如果主机发现请求的IP地址与自己的IP地址不匹配，它将丢弃ARP请求。<br>第3步：主机B确定ARP请求中的IP地址与自己的IP地址匹配，则将主机A的IP地址和MAC地址映射添加到本地ARP缓存中。<br>第4步：主机B将包含其MAC地址的ARP回复消息直接发送回主机A。<br>第5步：当主机A收到从主机B发来的ARP回复消息时，会用主机B的IP和MAC地址映射更新ARP缓存。本机缓存是有生存期的，生存期结束后，将再次重复上面的过程。主机B的MAC地址一旦确定，主机A就能向主机B发送IP通信了。</p>
+<p>ARP缓存中包含一个或多个表，它们用于存储IP地址及其经过解析的MAC地址。<br>ARP命令用于查询本机ARP缓存中IP地址–&gt;MAC地址的对应关系、添加或删除静态对应关系等。<br>如果在没有参数的情况下使用，ARP命令将显示帮助信息。<br>ARP命令常见用法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">arp -a或arp –g</span><br><span class="line">用于查看缓存中的所有项目。</span><br><span class="line">arp -a Ip</span><br><span class="line">如果有多个网卡，那么使用arp -a加上接口的IP地址，就可以只显示与该接口相关的ARP缓存项目。</span><br><span class="line">arp -s Ip 物理地址</span><br><span class="line">可以向ARP缓存中人工输入一个静态项目。</span><br><span class="line">arp -d Ip</span><br><span class="line">使用该命令能够人工删除一个静态项目。</span><br></pre></td></tr></table></figure>
+
+<h1 id="NAT协议"><a href="#NAT协议" class="headerlink" title="NAT协议"></a>NAT协议</h1><p>NAT英文全称是“Network Address Translation”，中文意思是“网络地址转换”，允许一个整体机构以一个公用IP（Internet Protocol）地址出现在Internet上。顾名思义，它是一种把内部私有网络地址（IP地址）翻译成合法网络IP地址的技术。</p>
+<p>NAT功能通常被集成到路由器、防火墙、ISDN路由器或者单独的NAT设备中，NAT技术类型 NAT有三种类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.静态NAT(Static NAT)</span><br><span class="line">2.动态地址NAT(Pooled NAT)</span><br><span class="line">3.网络地址端口转换NAPT（Port－Level NAT）</span><br></pre></td></tr></table></figure>
+
+<h1 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h1><p>Internet控制消息协议。</p>
+<p>它是TCP&#x2F;IP协议族的一个子协议，用于在IP主机、路由器之间传递控制消息。控制消息是指网络通不通、主机是否可达、路由是否可用等网络本身的消息。这些控制消息虽然并不传输用户数据，但是对于用户数据的传递起着重要的作用。</p>
+<p>我们经常使用的Ping及traceroute（Windows中为tracert）基于ICMP协议。</p>
+<h1 id="TCP与UDP协议"><a href="#TCP与UDP协议" class="headerlink" title="TCP与UDP协议"></a>TCP与UDP协议</h1><p><strong>TCP</strong>是面向连接的可靠的传输层协议，它支持在不可靠网络上实现面向连接的可靠的数据传输<br>TCP的特点：       三次握手        建立可靠的连接<br>                              确认机制        应答接受<br>                              端口号           多路复用<br>                              完整性校验    差错检测<br>                              序列号           丢失检测、乱序重拍<br>                              窗口机制       流量控制</p>
+<p><strong>UDP</strong>是一种无连接的传输层协议，它主要用于不要求分组顺序到达的传输中，分组传输顺序的检查与排序由应用层完成 ，提供面向事务的简单不可靠信息传送服务。<br>UDP特点：<br>UDP是无连接的  传输数据前并不与对方建立连接<br>UDP不对收到的数据进行排序<br>UDP对接收到的数据报不发送确认，发送端也不会重发数据<br>UDP传输数据较TCP快速，开销也少<br>UDP缺乏拥塞控制机制</p>
+<p><img src="/img/image-20240602145750695.png" alt="image-20240602145750695"></p>
+<h2 id="TCP报文格式"><a href="#TCP报文格式" class="headerlink" title="TCP报文格式"></a>TCP报文格式</h2><p><img src="/img/image-20240602153948123.png" alt="image-20240602153948123"></p>
+<p><strong>数据单位</strong></p>
+<p>32位即为32bit（比特位），等于4字节（ 4Byte 简写 4B）。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">8bit=1B（Byte 字节）</span><br><span class="line">1024B=1KB （Kilobyte 千字节）</span><br><span class="line">1024KB=1MB（Mega byte 兆字节）</span><br><span class="line">1024MB=1GB（Giga byte 吉字节 又称千兆）</span><br><span class="line">1024GB=1TB（Tera byte 万亿字节 又称太字节）</span><br><span class="line">其中1024=2^10 ( 2 的10次方)</span><br><span class="line"></span><br><span class="line">网络带宽与网速，为什么除以8？</span><br><span class="line">运营商是以bit为单位，且以千进位计算。</span><br><span class="line">比如百兆宽带：</span><br><span class="line">100Mbs</span><br><span class="line">=100*1000b/s</span><br><span class="line">=(100000/8)B/s</span><br><span class="line">=12500B/s</span><br><span class="line">=12.5MB/s</span><br><span class="line">而计算机中没有Mb一说，因为计算机b与B只差8倍，1000b在计算机中不存在单位换算。</span><br></pre></td></tr></table></figure>
+
+<p><strong>IP首部</strong>，包含源 IP 和目的 IP。<br>源IP：就是发送方的IP地址。<br>目的IP：就是接收方的IP地址。</p>
+<p><strong>源端口号</strong>（16位）：发送方主机的应用程序的端口号，范围0~65525。</p>
+<p><strong>目的端口号</strong>（16位）：目的主机的应用程序的端口号，范围0~65525。</p>
+<p><strong>序号</strong>（32位）：英文sequence number，TCP 报文段的每一个字节都有一个编号，此序号表示本报文段所发送数据的第一个字节的编号，在建立连接时由计算机随机生成，每发送一次数据，该序号+1，用来解决网络中包乱序的问题。</p>
+<p><strong>确认号</strong>（32位）：英文acknoledgement number，期望收到对方的下一个TCP报文段第一个字节的编号，即对方下一个序号。</p>
+<p><strong>数据偏移</strong>（4位）：又称首部长度，是指报文中的“数据”部分起始处距离TCP报文段起始处的有多远（即TCP报文头长度）。确定TCP报文的报头部分长度，告诉接收端应用程序，数据(有效载荷)从何处开始。</p>
+<p><strong>保留字段</strong>（6位）：为TCP将来的发展预留空间，目前必须全部为0 。</p>
+<p><strong>标志位字段</strong>：共有6个标志位，每个标志位占1个bit（0或1）。</p>
+<ul>
+<li><strong>URG</strong>：紧急比特，当 URG&#x3D;1 时，表明紧急指针字段有效。表示此报文段中有紧急数据，应尽快传送（相当于高优先级的数据）。</li>
+<li><strong>ACK</strong>：确认比特，当 ACK&#x3D;1时，确认号字段有效。当 ACK&#x3D;0 时，确认号无效。</li>
+<li><strong>PSH</strong>：推送比特，接收方 TCP 收到 PSH&#x3D;1的报文段，就尽快地交付给接收应用进程，而不再等到整个缓存都填满了后再向上交付。</li>
+<li><strong>RST</strong>：复位比特，当RST&#x3D;1时，表示TCP连接中出现严重差错(如由于主机崩溃或其他原因)，强制断开连接。</li>
+<li><strong>SYN</strong>：同步比特，SYN 置为 1，就表示这是一个连接请求或连接接受报文。</li>
+<li><strong>FIN</strong>：终止比特，用来释放一个连接。当FIN&#x3D;1 时，表明此报文段的发送端的数据已发送完毕，并要求释放运输连接。</li>
+</ul>
+<p><strong>窗口大小</strong>（16位）：窗口字段用来控制对方发送的数据量，单位为字节。TCP 连接的一端根据设置的缓存空间大小确定自己的接收窗口大小，然后通知对方接收窗口<strong>还可以接受多少字节的数据量</strong>，以确定对方的发送窗口的上限，该字段用于TCP的流量控制。</p>
+<p><strong>检验和</strong>（16位）：用于确认传输的数据有无损坏 。发送端基于数据内容校验生成一个数值，接收端根据接受的数据校验生成一个值。两个值相同代表数据有效，反之无效，丢弃该数据包。校验和根据 伪报头 + TCP头 + TCP数据 三部分进行计算。</p>
+<p><strong>紧急指针</strong>（16位）：仅当标志位字段的URG标志位为1时才有意义。指出有效载荷中为紧急数据的字节数。当所有紧急数据处理完后，TCP就会告诉应用程序恢复到正常操作。即使接收方窗口大小为0，也可以发送紧急数据，因为紧急数据无须缓存。</p>
+<p><strong>选项字段</strong>：长度不定，但长度必须是<strong>32bits的整数倍</strong>。内容可变，因此必须使用首部长度来区分选项的具体长度，TCP首部可以有多达40字节的可选信息，用于把附加信息传递给终点，或用来对齐其它选项。 这部分最多包含40字节，因为TCP头部最长是60字节（其中还包含前面讨论的20字节的固定部分）。</p>
+<h2 id="TCP协议三次握手"><a href="#TCP协议三次握手" class="headerlink" title="TCP协议三次握手"></a>TCP协议三次握手</h2><p><img src="/img/image-20240602173924546.png" alt="image-20240602173924546"></p>
+<p>​	三次握手(Three-way Handshake)，是指建立一个 TCP 连接时，需要客户端和服务器总共发送3个包。进行三次握手的目的是为了确认客户端和服务端双方的的发送能力和接收能力是否正常，、指定自己的初始化序列号为后面的可靠性传送做准备。实质上其实就是连接服务器指定端口，建立TCP连接，并同步连接双方的序列号和确认号，交换<code>TCP窗口大小</code>信息。</p>
+<p>刚开始客户端处于 Closed 的状态，服务端处于 Listen 状态。</p>
+<p><strong>第一次握手</strong></p>
+<p>​	客户端发送一个 TCP 的 SYN&#x3D;1的报文，请求连接服务器，并指明初始序号（也称ISN，英文Initial Sequence Number） seq&#x3D;x。发送完毕后，客户端进入 SYN_SEND 状态。SYN&#x3D;1的报文段不能携带数据，但要消耗掉一个序号。</p>
+<p><strong>第二次握手</strong></p>
+<p>​	服务器收到客户端的 SYN 报文之后，会以自己的 SYN 报文作为应答，并且也是指定了自己的初始化序列号（也称ISN，英文Initial Sequence Number） seq&#x3D;y，同时会把客户端的 seq 加 1 作为ack的值，表示自己已经收到了客户端的 SYN，发送完成后服务端进入SYN_RCVD状态。</p>
+<p><strong>第三次握手</strong></p>
+<p>​	客户端收到 SYN 报文之后，把服务端的seq加1作为 ack 的值应答，自己的seq序号&#x3D;x+1（初始为seq&#x3D;x，第二个报文段所以要+1）。客户端发送完毕后，进入ESTABLISHED状态，服务端接收到这个包，也进入ESTABLISHED状态, TCP握手结束。ACK报文段可以携带数据，不携带数据则不消耗序号。</p>
+<p><strong>ISN(Initial Sequence Number)是固定的吗？</strong></p>
+<p>​	当一端为建立连接而发送它的SYN时，它为连接选择一个初始序号。ISN随时间而变化，因此每个连接都将具有不同的ISN。ISN可以看作是一个32比特的计数器，每4ms加1 。这样选择序号的目的在于防止在网络中被延迟的分组在以后又被传送，而导致某个连接的一方对它做错误的解释。</p>
+<p>　　三次握手的其中一个重要功能是客户端和服务端交换 ISN(Initial Sequence Number)，以便让对方知道接下来接收数据的时候如何按序列号组装数据。如果 ISN 是固定的，攻击者很容易猜出后续的确认号，因此 ISN 是动态生成的。</p>
+<h3 id="SYN攻击"><a href="#SYN攻击" class="headerlink" title="SYN攻击"></a>SYN攻击</h3><p><strong>服务器端的资源分配是在二次握手时分配的，而客户端的资源是在完成三次握手时分配的</strong>，所以服务器容易受到SYN洪泛攻击。SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server则回复确认包，并等待Client确认，由于源地址不存在，因此Server需要不断重发直至超时，这些伪造的SYN包将长时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网络拥塞甚至系统瘫痪。SYN 攻击是一种典型的 DoS&#x2F;DDoS 攻击。</p>
+<p>检测 SYN 攻击非常的方便，当你在服务器上看到大量的半连接状态时，特别是源IP地址是随机的，基本上可以断定这是一次SYN攻击。在 Linux&#x2F;Unix 上可以使用系统自带的 netstat 命令来检测 SYN 攻击。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netstat -n -p TCP | grep SYN_RECV</span><br></pre></td></tr></table></figure>
+
+<p>常见的防御 SYN 攻击的方法有如下几种：</p>
+<ul>
+<li>缩短超时（SYN Timeout）时间</li>
+<li>增加最大半连接数</li>
+<li>过滤网关防护</li>
+<li>SYN cookies技术</li>
+</ul>
+<h3 id="用Wireshark看TCP三次握手"><a href="#用Wireshark看TCP三次握手" class="headerlink" title="用Wireshark看TCP三次握手"></a>用Wireshark看TCP三次握手</h3><p>打开Windows Server 2012（已安装IIS），查看IP是多少。</p>
+<p><img src="/img/20220616111649.png"></p>
+<p>打开kali的Wireshark软件。</p>
+<p><img src="/img/20220616112057.png"></p>
+<p><img src="/img/20220616112244.png"></p>
+<p>在kali使用<code>nc</code>命令监听Windows Server 2012 的80端口。</p>
+<p><code>nc</code>是<code>netcat</code>的简写，是一个功能强大的网络工具，有着网络界的瑞士军刀美誉。<code>nc</code>命令在<code>linux</code>系统中实际命令是<code>ncat</code>，<code>nc</code>是软连接到<code>ncat</code>。<code>nc</code>命令的主要作用如下：</p>
+<ul>
+<li>实现任意TCP&#x2F;UDP端口的侦听，<code>nc</code>可以作为server以TCP或UDP方式侦听指定端口。</li>
+<li>端口的扫描，<code>nc</code>可以作为client发起TCP或UDP连接。</li>
+<li>机器之间传输文件。</li>
+<li>机器之间网络测速。</li>
+</ul>
+<p><img src="/img/20220616112846.png"></p>
+<p>Source是源地址，Destination是目标地址，Protocol是协议。</p>
+<p>点击Protocol会根据Protocol排序。</p>
+<p><img src="/img/20220616113857.png"></p>
+<p>我们可以看到192.168.1.5是kali的IP，发起了第一次握手，发送[SYN]请求，kali的Seq序列号为0；</p>
+<p>Windows Server 2012返回[SYN, ACK]包，响应并返回一个请求给kali，Windows Server 2012的Seq&#x3D;0，ACK&#x3D;kali的Seq+1&#x3D;1;</p>
+<p>kali收到返回包，再次发出确认，发出[ACK]，ACK&#x3D;Windows Server 2012的Seq+1&#x3D;1。</p>
+<h2 id="TCP协议四次挥手"><a href="#TCP协议四次挥手" class="headerlink" title="TCP协议四次挥手"></a>TCP协议四次挥手</h2><p><img src="/img/image-20240602191121488.png" alt="image-20240602191121488"></p>
+<p>建立一个连接需要三次握手，而终止一个连接要经过四次挥手（也有将四次挥手叫做四次握手的）。这由TCP的半关闭（half-close）造成的。所谓的半关闭，其实就是TCP提供了连接的一端在结束它的发送后还能接收来自另一端数据的能力。</p>
+<p>TCP 连接的拆除需要发送四个包，因此称为四次挥手(Four-way handshake)，客户端或服务端均可主动发起挥手动作。</p>
+<p>刚开始双方都处于ESTABLISHED 状态，假如是客户端先发起关闭请求。四次挥手的过程如下：</p>
+<p><strong>第一次挥手</strong>：客户端发送一个 FIN 报文，报文中会指定一个序列号。此时客户端处于 FIN_WAIT1 状态。</p>
+<p>　　即发出连接释放报文段（FIN&#x3D;1，序号seq&#x3D;a），并停止再发送数据，主动关闭TCP连接，进入FIN_WAIT1（终止等待1）状态，等待服务端的确认。</p>
+<p><strong>第二次挥手</strong>：服务端收到 FIN 之后，会发送 ACK 报文，且把客户端的序列号值 +1 作为 ACK 报文的序列号值，表明已经收到客户端的报文了，此时服务端处于 CLOSE_WAIT 状态。</p>
+<p>　　即服务端收到连接释放报文段后即发出确认报文段（ACK&#x3D;1，确认号ack&#x3D;a+1，序号seq&#x3D;b），服务端进入CLOSE_WAIT（关闭等待）状态，此时的TCP处于半关闭状态，客户端到服务端的连接释放。客户端收到服务端的确认后，进入FIN_WAIT2（终止等待2）状态，等待服务端发出的连接释放报文段。</p>
+<p><strong>第三次挥手</strong>：如果服务端也想断开连接了，和客户端的第一次挥手一样，发给 FIN 报文，且指定一个序列号。此时服务端处于 LAST_ACK 的状态。</p>
+<p>　　即服务端没有要向客户端发出的数据，服务端发出连接释放报文段（FIN&#x3D;1，ACK&#x3D;1，序号seq&#x3D;c，确认号ack&#x3D;a+1），服务端进入LAST_ACK（最后确认）状态，等待客户端的确认。</p>
+<p><strong>第四次挥手</strong>：客户端收到 FIN 之后，一样发送一个 ACK 报文作为应答，且把服务端的序列号值 +1 作为自己 ACK 报文的序列号值，此时客户端处于 TIME_WAIT 状态。需要过一阵子以确保服务端收到自己的 ACK 报文之后才会进入 CLOSED 状态，服务端收到 ACK 报文之后，就处于关闭连接了，处于 CLOSED 状态。　　</p>
+<p>　　即客户端收到服务端的连接释放报文段后，对此发出确认报文段（ACK&#x3D;1，seq&#x3D;a+1，ack&#x3D;c+1），客户端进入TIME_WAIT（时间等待）状态。此时TCP未释放掉，需要经过时间等待计时器设置的时间2MSL后，客户端才进入CLOSED状态。</p>
+<p><strong>收到一个FIN只意味着在这一方向上没有数据流动。客户端执行主动关闭并进入TIME_WAIT是正常的，服务端通常执行被动关闭，不会进入TIME_WAIT状态。</strong></p>
+<p>通俗解释：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第一次：客户端向服务端发送一个FIN=N,告诉服务端我已经发送完毕了想要关闭了，如果你还有想要发送的你就发吧，不急着关,然后进入FIN_WAIT_1状态。</span><br><span class="line"></span><br><span class="line">第二次：服务端收到客户端说我还想浪一会，给客户端发送ack=N+1,客户端收到后说行进入FIN_WAIT_2状态。</span><br><span class="line"></span><br><span class="line">第三次：服务端浪完以后发送一个FIN=M报文给客户端，告诉客户端我发完了你可以关闭了，客户端收到以后进入LAST_ACK状态。</span><br><span class="line"></span><br><span class="line">第四次：客户端收到服务端发的信息之后不放心网络，怕服务端不知道要关闭，发送ack=M+1给服务端，并进入TIME_WAIT状态，服务端收到ACK后就知道可以关闭了，就关闭了。客户端等待一会儿后没有收到回复，则证明服务端已经关闭，客户端也就关闭了。</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://qeminco.github.io">Qeminco</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://qeminco.github.io/2024/05/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">https://qeminco.github.io/2024/05/25/计算机网络/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://qeminco.github.io" target="_blank">Qeminco'blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/07/25/%E7%AB%AF%E5%8F%A3%E5%8D%8F%E8%AE%AE/" title="端口与协议"><img class="cover" src="/img/51.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-25</div><div class="title">端口与协议</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/kunkun.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Qeminco</div><div class="author-info__description">学习如逆水行舟，不进则退。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">生活明朗，万物可爱。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">1 概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-OSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">2 OSI七层模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-TCP-IP%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">3 TCP&#x2F;IP四层模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARP%E5%8D%8F%E8%AE%AE"><span class="toc-number">4.</span> <span class="toc-text">ARP协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NAT%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.</span> <span class="toc-text">NAT协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ICMP%E5%8D%8F%E8%AE%AE"><span class="toc-number">6.</span> <span class="toc-text">ICMP协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP%E4%B8%8EUDP%E5%8D%8F%E8%AE%AE"><span class="toc-number">7.</span> <span class="toc-text">TCP与UDP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-number">7.1.</span> <span class="toc-text">TCP报文格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E5%8D%8F%E8%AE%AE%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">7.2.</span> <span class="toc-text">TCP协议三次握手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SYN%E6%94%BB%E5%87%BB"><span class="toc-number">7.2.1.</span> <span class="toc-text">SYN攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8Wireshark%E7%9C%8BTCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">7.2.2.</span> <span class="toc-text">用Wireshark看TCP三次握手</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E5%8D%8F%E8%AE%AE%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-number">7.3.</span> <span class="toc-text">TCP协议四次挥手</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题"><img src="/img/14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题">无题</a><time datetime="2024-06-27T15:07:52.030Z" title="发表于 2024-06-27 23:07:52">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi"><img src="/img/26.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JNDI、ldap与rmi"/></a><div class="content"><a class="title" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi">JNDI、ldap与rmi</a><time datetime="2024-06-26T16:00:00.000Z" title="发表于 2024-06-27 00:00:00">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fastjson反序列化RCE"/></a><div class="content"><a class="title" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE">Fastjson反序列化RCE</a><time datetime="2024-06-24T16:00:00.000Z" title="发表于 2024-06-25 00:00:00">2024-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud Gateway远程命令执行漏洞复现"/></a><div class="content"><a class="title" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现">Spring Cloud Gateway远程命令执行漏洞复现</a><time datetime="2024-06-22T16:00:00.000Z" title="发表于 2024-06-23 00:00:00">2024-06-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven"><img src="/img/6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="idea配置Maven"/></a><div class="content"><a class="title" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven">idea配置Maven</a><time datetime="2024-06-20T16:00:00.000Z" title="发表于 2024-06-21 00:00:00">2024-06-21</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/63.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By Qeminco</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到我的博客~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://qeminco-twikoo.hf.space',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://qeminco-twikoo.hf.space',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

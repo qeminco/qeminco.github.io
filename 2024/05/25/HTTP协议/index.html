@@ -1,0 +1,960 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HTTP协议 | Qeminco'blog</title><meta name="author" content="Qeminco"><meta name="copyright" content="Qeminco"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1 概述超文本传输协议（英语：HyperText Transfer Protocol，缩写：HTTP）。 设计HTTP最初的目的是为了提供一种发布和接收HTML（超文本标记语言）页面的方法。通过HTTP或者HTTPS协议请求的资源由统一资源标识符（Uniform Resource Identifiers，URI）来标识。 HTTP的发展是由蒂姆·伯纳斯-李于1989年在欧洲核子研究组织（CERN）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP协议">
+<meta property="og:url" content="https://qeminco.github.io/2024/05/25/HTTP%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="Qeminco&#39;blog">
+<meta property="og:description" content="1 概述超文本传输协议（英语：HyperText Transfer Protocol，缩写：HTTP）。 设计HTTP最初的目的是为了提供一种发布和接收HTML（超文本标记语言）页面的方法。通过HTTP或者HTTPS协议请求的资源由统一资源标识符（Uniform Resource Identifiers，URI）来标识。 HTTP的发展是由蒂姆·伯纳斯-李于1989年在欧洲核子研究组织（CERN）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qeminco.github.io/img/44.jpg">
+<meta property="article:published_time" content="2024-05-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-23T08:07:21.591Z">
+<meta property="article:author" content="Qeminco">
+<meta property="article:tag" content="网络协议">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qeminco.github.io/img/44.jpg"><link rel="shortcut icon" href="/img/cat.png"><link rel="canonical" href="https://qeminco.github.io/2024/05/25/HTTP%E5%8D%8F%E8%AE%AE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HTTP协议',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-23 16:07:21'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/kunkun.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/44.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Qeminco'blog"><img class="site-icon" src="/img/cat.png"/><span class="site-name">Qeminco'blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">HTTP协议</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-05-24T16:00:00.000Z" title="发表于 2024-05-25 00:00:00">2024-05-25</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h1><p><strong>超文本传输协议</strong>（英语：<strong>H</strong>yper<strong>T</strong>ext <strong>T</strong>ransfer <strong>P</strong>rotocol，缩写：<strong>HTTP</strong>）。</p>
+<p>设计<code>HTTP</code>最初的目的是为了提供一种发布和接收<code>HTML</code>（超文本标记语言）页面的方法。通过<code>HTTP</code>或者<code>HTTPS</code>协议请求的资源由统一资源标识符（Uniform Resource Identifiers，URI）来标识。</p>
+<p><code>HTTP</code>的发展是由蒂姆·伯纳斯-李于1989年在欧洲核子研究组织（<code>CERN</code>）所发起。<code>HTTP</code>的标准制定由万维网协会（World Wide Web Consortium，<code>W3C</code>）和互联网工程任务组（Internet Engineering Task Force，<code>IETF</code>）进行协调，最终发布了一系列的<code>RFC</code>，其中最著名的是1999年6月公布的 RFC 2616，定义了<code>HTTP</code>协议中现今广泛使用的一个版本——<code>HTTP 1.1</code>。</p>
+<p>2014年12月，互联网工程任务组（<code>IETF</code>）的Hypertext Transfer Protocol Bis（<code>httpbis</code>）工作小组将<code>HTTP/2</code>标准提议递交至<code>IESG</code>进行讨论，于2015年2月17日被批准。<code>HTTP/2标准</code>于2015年5月以<code>RFC 7540</code>正式发表，取代<code>HTTP 1.1</code>成为<code>HTTP</code>的实现标准。</p>
+<p>1.0和2.0都少见，1.1最常见。</p>
+<p>HTTP是一个应用层协议，由请求和响应构成，是一个标准的客户端服务器模型。HTTP是一个无状态的协议。 在Internet中所有的传输都是通过TCP&#x2F;IP进行的。HTTP协议作为TCP&#x2F;IP模型中应用层的协议也不例外。HTTP协议通 常承载于TCP协议之上，有时也承载于TLS或SSL协议层之上，这个时候，就成了我们常说的HTTPS。如下图所示：</p>
+<p><img src="/img/image-20240522101119722.png" alt="image-20240522101119722"></p>
+<p>HTTP默认的端口号为80，HTTPS的端口号为443。 浏览网页是HTTP的主要应用，但是这并不代表HTTP就只能应用于网页的浏览。HTTP是一种协议，只要通信的双方都 遵守这个协议，HTTP就能有用武之地。比如咱们常用的QQ，迅雷这些软件，都会使用HTTP协议(还包括其他的协议)。</p>
+<h1 id="2-请求方法"><a href="#2-请求方法" class="headerlink" title="2 请求方法"></a>2 请求方法</h1><h2 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h2><p>GET方法请求一个指定资源的表示形式，使用GET的请求应该只被用于获取数据。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GET /books/?sex=man&amp;name=Professional HTTP/1.1</span><br><span class="line">Host: www.example.com</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.6)</span><br><span class="line">Gecko/20050225 Firefox/1.0.1</span><br><span class="line">Connection: Keep-Alive</span><br></pre></td></tr></table></figure>
+
+<h2 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h2><p>HEAD方法请求一个与GET请求的响应相同的响应，但没有响应体。</p>
+<p>GET是请求下来一个资源（会获取到），HEAD是确认服务器有没有这个资源，服务器告诉客户端有，但是不会给。</p>
+<p>HEAD收到的包非常小，和适合做资源探测，比如一个网站明面上点不到的网页资源，目录扫描之类的，御剑就是用这个原理。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HEAD /admin HTTP/1.1</span><br><span class="line">Host: www.example.com</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.6)</span><br><span class="line">Gecko/20050225 Firefox/1.0.1</span><br><span class="line">Connection: Keep-Alive</span><br></pre></td></tr></table></figure>
+
+<h2 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h2><p>POST方法用于将实体提交到指定的资源，通常导致在服务器上的状态变化或副作用。</p>
+<p>登录、注册、留言、上传、修改资料等存在数据参与的，把数据提交到服务器表单的都是post请求。像这种数据量比较大的时候，就会用post请求，而不是利用url的get请求。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POST / HTTP/1.1</span><br><span class="line">Host: www.example.com</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.6)</span><br><span class="line">Gecko/20050225 Firefox/1.0.1</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 40</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line"></span><br><span class="line">sex=man&amp;name=Professional</span><br></pre></td></tr></table></figure>
+
+<h2 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h2><p>PUT方法用请求有效载荷替换目标资源的所有当前表示。</p>
+<p>PUT和POST有点像，PUT是把自己的资源（如下1.txt）同步到服务器上，POST只是提交一个表单。</p>
+<p>对于服务器来讲，PUT是一个极其危险的请求。</p>
+<p>现在基本没有PUT漏洞了，IIS6.0有一个经典的PUT漏洞。</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">PUT</span> <span class="string">/1.txt</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>www.example.com</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.6)</span><br><span class="line">Gecko/20050225 Firefox/1.0.1</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>Keep-Alive</span><br></pre></td></tr></table></figure>
+
+<h2 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h2><p>DELETE方法删除指定的资源。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELETE /1.txt HTTP/1.1</span><br><span class="line">Host: www.example.com</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.6)</span><br><span class="line">Gecko/20050225 Firefox/1.0.1</span><br><span class="line">Connection: Keep-Alive</span><br></pre></td></tr></table></figure>
+
+<h2 id="TRACE"><a href="#TRACE" class="headerlink" title="TRACE"></a>TRACE</h2><p>TRACE方法沿着到目标资源的路径执行一个消息环回测试。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">TRACE /1.txt HTTP/1.1</span><br><span class="line">Host: www.example.com</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.6)</span><br><span class="line">Gecko/20050225 Firefox/1.0.1</span><br><span class="line">Connection: Keep-Alive</span><br></pre></td></tr></table></figure>
+
+<h2 id="OPTIONS"><a href="#OPTIONS" class="headerlink" title="OPTIONS"></a>OPTIONS</h2><p>OPTIONS方法用于描述目标资源的通信选项。</p>
+<p>给服务器发一个包，服务器告诉客户端它支持哪些协议</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">OPTIONS / HTTP/1.1</span><br><span class="line">Host: www.example.com</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.6)</span><br><span class="line">Gecko/20050225 Firefox/1.0.1</span><br><span class="line">Connection: Keep-Alive</span><br></pre></td></tr></table></figure>
+
+<h2 id="CONNECT"><a href="#CONNECT" class="headerlink" title="CONNECT"></a>CONNECT</h2><p>CONNECT方法建立一个到由目标资源标识的服务器的隧道。</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CONNECT</span> <span class="string">/</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>www.example.com</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.6)</span><br><span class="line">Gecko/20050225 Firefox/1.0.1</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>Keep-Alive</span><br></pre></td></tr></table></figure>
+
+<h2 id="GET和POST的区别"><a href="#GET和POST的区别" class="headerlink" title="GET和POST的区别"></a>GET和POST的区别</h2><ul>
+<li>GET提交的数据会放在URL之后，以?分割URL和传输数据，参数之间以&amp;相连，如EditPosts.aspx? name&#x3D;test1&amp;id&#x3D;123456. POST方法是把提交的数据放在HTTP包的Body中。</li>
+<li>GET提交的数据大小有限制，最多只能有1024字节（因为浏览器对URL的长度有限制），而POST方法提交的数据没有限制。</li>
+</ul>
+<h2 id="http-log"><a href="#http-log" class="headerlink" title="http log"></a>http log</h2><p>做排查的时候 http log 是没有 body 字段的，如果payload在body中就不知道攻击者做了什么，只能拿全流量看，科莱或者其他厂商，开源的也有。</p>
+<h2 id="get、post互转"><a href="#get、post互转" class="headerlink" title="get、post互转"></a>get、post互转</h2><p>比如 <code>http://www.example.com/login.php?username=zhangsan&amp;passwd=123456</code> （<code>?</code> 表示要给<code>login.php</code>传参数了）。</p>
+<p>如果把以上连接复制粘贴到网址栏，默认就会是get请求。</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/login.php?username=zhangsan&amp;passwd=123456</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>www.example.com</span><br></pre></td></tr></table></figure>
+
+<p>如果是post请求，参数会出现在body字段中。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POST /login.php HTTP/1.1</span><br><span class="line">Host: www.example.com</span><br><span class="line">......</span><br><span class="line">username=zhangsan&amp;passwd=123456</span><br></pre></td></tr></table></figure>
+
+<p>如果有些 WAF 拦截get注入包，可以换成post请求，payload放body中。burpsuite中右键有get转post的选项，也有post转get的选项。 </p>
+<h1 id="3-请求标记头"><a href="#3-请求标记头" class="headerlink" title="3 请求标记头"></a>3 请求标记头</h1><table>
+<thead>
+<tr>
+<th align="center">协议头字段名</th>
+<th align="center">说明</th>
+<th align="center">示例</th>
+<th align="center">状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Accept</td>
+<td align="center">能够接受的回应内容类型（Content-Types）</td>
+<td align="center"><code>Accept: text/plain</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Accept-Charset</td>
+<td align="center">能够接受的字符集</td>
+<td align="center"><code>Accept-Charset: utf-8</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Accept-Encoding</td>
+<td align="center">能够接受的编码方式列表。</td>
+<td align="center"><code>Accept-Encoding: gzip, deflate</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Accept-Language</td>
+<td align="center">能够接受的回应内容的自然语言列表。</td>
+<td align="center"><code>Accept-Language: en-US</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Accept-Datetime</td>
+<td align="center">能够接受的按照时间来表示的版本</td>
+<td align="center"><code>Accept-Datetime: Thu, 31 May 2007 20:35:00 GMT</code></td>
+<td align="center">临时</td>
+</tr>
+<tr>
+<td align="center">Authorization</td>
+<td align="center">用于超文本传输协议的认证的认证信息</td>
+<td align="center"><code>Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Cache-Control</td>
+<td align="center">用来指定在这次的请求&#x2F;响应链中的所有缓存机制 都必须 遵守的指令</td>
+<td align="center"><code>Cache-Control: no-cache</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Connection</td>
+<td align="center">该浏览器想要优先使用的连接类型</td>
+<td align="center"><code>Connection: keep-alive``Connection: Upgrade</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Cookie</td>
+<td align="center">之前由服务器通过 Set- Cookie （下文详述）发送的一个 超文本传输协议Cookie</td>
+<td align="center"><code>Cookie: $Version=1; Skin=new;</code></td>
+<td align="center">常设: 标准</td>
+</tr>
+<tr>
+<td align="center">Content-Length</td>
+<td align="center">以 八位字节数组 （8位的字节）表示的请求体的长度</td>
+<td align="center"><code>Content-Length: 348</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Content-MD5</td>
+<td align="center">请求体的内容的二进制 MD5 散列值，以 Base64 编码的结果</td>
+<td align="center"><code>Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ==</code></td>
+<td align="center">过时的[<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5#cite_note-9">9]</a></td>
+</tr>
+<tr>
+<td align="center">Content-Type</td>
+<td align="center">请求体的MIME类型 （用于POST和PUT请求中）</td>
+<td align="center"><code>Content-Type: application/x-www-form-urlencoded</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Date</td>
+<td align="center">发送该消息的日期和时间(按照 <code>RFC 7231</code> 中定义的”超文本传输协议日期”格式来发送)</td>
+<td align="center"><code>Date: Tue, 15 Nov 1994 08:12:31 GMT</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Expect</td>
+<td align="center">表明客户端要求服务器做出特定的行为</td>
+<td align="center"><code>Expect: 100-continue</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">From</td>
+<td align="center">发起此请求的用户的邮件地址</td>
+<td align="center"><code>From: user@example.com</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Host</td>
+<td align="center">服务器的域名(用于虚拟主机 )，以及服务器所监听的[传输控制协议)端口号。如果所请求的端口是对应的服务的标准端口，则端口号可被省略。自超文件传输协议版本1.1（<code>HTTP/1.1</code>）开始便是必需字段。</td>
+<td align="center"><code>Host: zh.fsec.io:80``Host: zh.fsec.io</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">If-Match</td>
+<td align="center">仅当客户端提供的实体与服务器上对应的实体相匹配时，才进行对应的操作。主要作用时，用作像 <code>PUT</code> 这样的方法中，仅当从用户上次更新某个资源以来，该资源未被修改的情况下，才更新该资源。</td>
+<td align="center"><code>If-Match: &quot;737060cd8c284d8af7ad3082f209582d&quot;</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">If-Modified-Since</td>
+<td align="center">允许在对应的内容未被修改的情况下返回304未修改（<code>304 Not Modified</code> ）</td>
+<td align="center"><code>If-Modified-Since: Sat, 29 Oct 1994 19:43:31 GMT</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">If-None-Match</td>
+<td align="center">允许在对应的内容未被修改的情况下返回304未修改（ <code>304 Not Modified</code> ），参考 超文本传输协议的实体标记</td>
+<td align="center"><code>If-None-Match: &quot;737060cd8c284d8af7ad3082f209582d&quot;</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">If-Range</td>
+<td align="center">如果该实体未被修改过，则向我发送我所缺少的那一个或多个部分；否则，发送整个新的实体</td>
+<td align="center"><code>If-Range: &quot;737060cd8c284d8af7ad3082f209582d&quot;</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">If-Unmodified-Since</td>
+<td align="center">仅当该实体自某个特定时间已来未被修改的情况下，才发送回应。</td>
+<td align="center"><code>If-Unmodified-Since: Sat, 29 Oct 1994 19:43:31 GMT</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Max-Forwards</td>
+<td align="center">限制该消息可被代理及网关转发的次数。</td>
+<td align="center"><code>Max-Forwards: 10</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Origin</td>
+<td align="center">发起一个针对 跨来源资源共享 的请求（要求服务器在回应中加入一个‘访问控制-允许来源’（’<code>Access-Control-Allow-Origin</code>‘）字段）。</td>
+<td align="center"><code>Origin: http://www.example-social-network.com</code></td>
+<td align="center">常设: 标准</td>
+</tr>
+<tr>
+<td align="center">Pragma</td>
+<td align="center">与具体的实现相关，这些字段可能在请求&#x2F;回应链中的任何时候产生多种效果。</td>
+<td align="center"><code>Pragma: no-cache</code></td>
+<td align="center">常设但不常用</td>
+</tr>
+<tr>
+<td align="center">Proxy-Authorization</td>
+<td align="center">用来向代理进行认证的认证信息。</td>
+<td align="center"><code>Proxy-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Range</td>
+<td align="center">仅请求某个实体的一部分。字节偏移以0开始。参见字节服务。</td>
+<td align="center"><code>Range: bytes=500-999</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Referer</td>
+<td align="center">表示浏览器所访问的前一个页面，正是那个页面上的某个链接将浏览器带到了当前所请求的这个页面。</td>
+<td align="center"><code>Referer: http://zh.fsec.io/wiki/Main_Page</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">TE</td>
+<td align="center">浏览器预期接受的传输编码方式：可使用回应协议头 Transfer-Encoding 字段中的值；另外还可用”trailers”（与”分块 “传输方式相关）这个值来表明浏览器希望在最后一个尺寸为0的块之后还接收到一些额外的字段。</td>
+<td align="center"><code>TE: trailers, deflate</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">User-Agent</td>
+<td align="center">浏览器的浏览器身份标识字符串</td>
+<td align="center"><code>User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/21.0</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Upgrade</td>
+<td align="center">要求服务器升级到另一个协议。</td>
+<td align="center"><code>Upgrade: HTTP/2.0, SHTTP/1.3, IRC/6.9, RTA/x11</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Via</td>
+<td align="center">向服务器告知，这个请求是由哪些代理发出的。</td>
+<td align="center"><code>Via: 1.0 fred, 1.1 example.com (Apache/1.1)</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Warning</td>
+<td align="center">一个一般性的警告，告知，在实体内容体中可能存在错误。</td>
+<td align="center"><code>Warning: 199 Miscellaneous warning</code></td>
+<td align="center">常设</td>
+</tr>
+</tbody></table>
+<h2 id="GET-HTTP-1-1"><a href="#GET-HTTP-1-1" class="headerlink" title="GET &#x2F; HTTP&#x2F;1.1"></a>GET &#x2F; HTTP&#x2F;1.1</h2><p><code>GET</code>：请求方式。</p>
+<p>​    <code>/</code> ：请求的资源，与 Host 中的内容拼接在一起组成完整的url（例：<code>www.123.com/456.html</code> ）。</p>
+<p><code>HTTP/1.1</code>：http协议号。</p>
+<h2 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h2><p>header头中的Host主要是给网站的容器（Apache）分析和dns的，比如说一个站点搭了很多站，都是同一个ip，同一个端口（80），看访问哪个站，用Host域名来区分。</p>
+<h2 id="User-Agent"><a href="#User-Agent" class="headerlink" title="User-Agent"></a>User-Agent</h2><p>用户浏览器的标识。一些WAF会识别出会不会是扫描工具sqlmap等，会拦截。</p>
+<p>sqlmap默认的User-Agent是sqlmap.org</p>
+<p>w3af默认的User-Agent是w3af.org</p>
+<p>扫描的时候最好random-useragent一下，随机生成或调用一些浏览器的正规useragent，sqlmap就有random-useragent参数，防止被WAF识别到。</p>
+<p>client-ip:1.1.1.1</p>
+<p>x-forwarded-for:1.1.1.1</p>
+<p>以上两个都是指定的一些客户端的ip</p>
+<h2 id="Content-Length"><a href="#Content-Length" class="headerlink" title="Content-Length"></a>Content-Length</h2><p>Content-Length表示正文的长度。</p>
+<p><img src="/img/20220615165014.png"></p>
+<h2 id="Content-Type"><a href="#Content-Type" class="headerlink" title="Content-Type"></a>Content-Type</h2><p>Content-Type表示响应的文档类型。</p>
+<p><img src="/img/20220615165316.png"></p>
+<h2 id="Accept"><a href="#Accept" class="headerlink" title="Accept"></a>Accept</h2><p>浏览器端可以接受的MIME类型，客户端能接受的文档类型。</p>
+<h2 id="Accept-Language"><a href="#Accept-Language" class="headerlink" title="Accept-Language"></a>Accept-Language</h2><p>浏览器申明自己接收的语言。语言跟字符集的区别：中文是语言，中文有多种字符集，比如 big5，gb2312，gbk等等。</p>
+<h2 id="Referer"><a href="#Referer" class="headerlink" title="Referer"></a>Referer</h2><p>表示请求的来源，包含一个URL，用户从该URL代表的页面出发访问当前请求的页面。提供了Request的上下文信息的服务器，告诉服务器我是从哪个链接过来的，比如从我主页上链接到一个朋友那里，他的服务器就能够从HTTP Referer中统计出每天有多少用户点击我主页上的链接访问他的网站。</p>
+<p>指定你从哪个页面跳转过来了，来源。</p>
+<p>比如要访问某个网站的登录界面，抓到的包头就是</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/login.html</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>www.123.com</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) ...........</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://www.123.com/</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br></pre></td></tr></table></figure>
+
+<p>意思就是从 <code>http://www.123.com/</code> 跳转到 <code>http://www.123.com/login.html</code> 。</p>
+<p>常用来检测csrf攻击，看是否为合法来源。</p>
+<h2 id="Connection-keep-alive"><a href="#Connection-keep-alive" class="headerlink" title="Connection: keep-alive"></a>Connection: keep-alive</h2><p>当一个网页打开完成后，客户端和服务器之间用于传输HTTP数据的TCP连接不会关 闭，如果客户端再次访问这个服务器上的网页，会继续使用这一条已经建立的连接。HTTP 1.1默认进行持久连接。利用 持久连接的优点，当页面包含多个元素时（例如Applet，图片），显著地减少下载所需要的时间。要实现这一 点，Servlet需要在应答中发送一个Content-Length头，最简单的实现方法是：先把内容写入 ByteArrayOutputStream，然后在正式写出内容之前计算它的大小。 </p>
+<h2 id="Connection-close"><a href="#Connection-close" class="headerlink" title="Connection: close"></a>Connection: close</h2><p>代表一个Request完成后，客户端和服务器之间用于传输HTTP数据的TCP连接会关闭，当客户端 再次发送Request，需要重新建立TCP连接。</p>
+<h2 id="Origin"><a href="#Origin" class="headerlink" title="Origin"></a>Origin</h2><p>请求的网页来源。</p>
+<h1 id="4-响应状态码"><a href="#4-响应状态码" class="headerlink" title="4 响应状态码"></a>4 响应状态码</h1><h2 id="1xx-消息"><a href="#1xx-消息" class="headerlink" title="1xx 消息"></a>1xx 消息</h2><p>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。由于HTTP&#x2F;1.0协议中没有定义任何1xx状态码，所以除非在某些试验条件下，服务器禁止向此类客户端发送1xx响应。[<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81#cite_note-3">3]</a> 这些状态码代表的响应都是信息性的，标示客户应该等待服务器采取进一步行动。</p>
+<ul>
+<li><p>100 Continue</p>
+<p>服务器已经接收到请求头，并且客户端应继续发送请求主体（在需要发送身体的请求的情况下：例如，POST请求），或者如果请求已经完成，忽略这个响应。服务器必须在请求完成后向客户端发送一个最终响应。要使服务器检查请求的头部，客户端必须在其初始请求中发送<code>Expect: 100-continue</code>作为头部，并在发送正文之前接收<code>100 Continue</code>状态代码。响应代码417期望失败表示请求不应继续。</p>
+</li>
+<li><p>101 Switching Protocols</p>
+<p>服务器已经理解了客户端的请求，并将通过Upgrade消息头通知客户端采用不同的协议来完成这个请求。在发送完这个响应最后的空行后，服务器将会切换到在Upgrade消息头中定义的那些协议</p>
+<p>只有在切换新的协议更有好处的时候才应该采取类似措施。例如，切换到新的HTTP版本（如HTTP&#x2F;2）比旧版本更有优势，或者切换到一个实时且同步的协议（如WebSocket）以传送利用此类特性的资源。</p>
+</li>
+<li><p>102 Processing（WebDAV RFC 2518）</p>
+<p>WebDAV请求可能包含许多涉及文件操作的子请求，需要很长时间才能完成请求。该代码表示服务器已经收到并正在处理请求，但无响应可用。[<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81#cite_note-RFC_2518-5">5]</a>这样可以防止客户端超时，并假设请求丢失。</p>
+</li>
+<li><p>103 Early Hints</p>
+<p>用来在最终的HTTP消息之前返回一些响应头。</p>
+</li>
+</ul>
+<h2 id="2xx-成功"><a href="#2xx-成功" class="headerlink" title="2xx 成功"></a>2xx 成功</h2><p>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受。</p>
+<ul>
+<li><p>200 OK</p>
+<p>请求已成功，请求所希望的响应头或数据体将随此响应返回。实际的响应将取决于所使用的请求方法。在GET请求中，响应将包含与请求的资源相对应的实体。在POST请求中，响应将包含描述或操作结果的实体。</p>
+</li>
+<li><p>201 Created</p>
+<p>请求已经被实现，而且有一个新的资源已经依据请求的需要而创建，且其URI已经随Location头信息返回。假如需要的资源无法及时创建的话，应当返回202 Accepted’。</p>
+</li>
+<li><p>202 Accepted</p>
+<p>服务器已接受请求，但尚未处理。最终该请求可能会也可能不会被执行，并且可能在处理发生时被禁止。</p>
+</li>
+<li><p>203 Non-Authoritative Information（自HTTP &#x2F; 1.1起）</p>
+<p>服务器是一个转换代理服务器（transforming proxy，例如网络加速器），以<code>200 OK</code>状态码为起源，但回应了原始响应的修改版本。</p>
+</li>
+<li><p>204 No Content</p>
+<p>服务器成功处理了请求，没有返回任何内容。在强制门户功能中，Wi-Fi设备连接到需要进行 Web 认证的 Wi-Fi  接入点时，通过访问一个能生成 HTTP 204 响应的的网站，如果能正常收到 204 响应，则代表无需 Web  认证，否则会弹出网页浏览器界面，显示出 Web 网页认证界面用于让用户认证登录。</p>
+</li>
+<li><p>205 Reset Content</p>
+<p>服务器成功处理了请求，但没有返回任何内容。与204响应不同，此响应要求请求者重置文档视图。[<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81#cite_note-12">12]</a></p>
+</li>
+<li><p>206 Partial Content RFC 7233</p>
+<p>服务器已经成功处理了部分GET请求。类似于FlashGet或者迅雷这类的HTTP下载工具都是使用此类响应实现断点续传或者将一个大文档分解为多个下载段同时下载。</p>
+</li>
+<li><p>207 Multi-Status（WebDAV；RFC 4918</p>
+<p>代表之后的消息体将是一个XML消息，并且可能依照之前子请求数量的不同，包含一系列独立的响应代码。</p>
+</li>
+<li><p>208 Already Reported （WebDAV；RFC 5842）</p>
+<p>DAV绑定的成员已经在（多状态）响应之前的部分被列举，且未被再次包含。</p>
+</li>
+<li><p>226 IM Used （RFC 3229）</p>
+<p>服务器已经满足了对资源的请求，对实体请求的一个或多个实体操作的结果表示。</p>
+</li>
+</ul>
+<h2 id="3xx-重定向"><a href="#3xx-重定向" class="headerlink" title="3xx 重定向"></a>3xx 重定向</h2><p>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这些状态码用来重定向，后续的请求地址（重定向目标）在本次响应的Location域中指明。[<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81#cite_note-iana_status_codes-2">2]</a></p>
+<p>当且仅当后续的请求所使用的方法是GET或者HEAD时，用户浏览器才可以在没有用户介入的情况下自动提交所需要的后续请求。客户端应当自动监测无限循环重定向（例如：A→B→C→……→A或A→A），因为这会导致服务器和客户端大量不必要的资源消耗。按照HTTP&#x2F;1.0版规范的建议，浏览器不应自动访问超过5次的重定向。</p>
+<ul>
+<li><p>300 Multiple Choices</p>
+<p>被请求的资源有一系列可供选择的回馈信息，每个都有自己特定的地址和浏览器驱动的商议信息。用户或浏览器能够自行选择一个首选的地址进行重定向。</p>
+<p>除非这是一个HEAD请求，否则该响应应当包括一个资源特性及地址的列表的实体，以便用户或浏览器从中选择最合适的重定向地址。这个实体的格式由Content-Type定义的格式所决定。浏览器可能根据响应的格式以及浏览器自身能力，自动作出最合适的选择。当然，RFC 2616规范并没有规定这样的自动选择该如何进行。</p>
+<p>如果服务器本身已经有了首选的回馈选择，那么在Location中应当指明这个回馈的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/URI">URI</a>；浏览器可能会将这个Location值作为自动重定向的地址。此外，除非额外指定，否则这个响应也是可缓存的。</p>
+</li>
+<li><p>301 Moved Permanently</p>
+<p>被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个URI之一。如果可能，拥有链接编辑功能的客户端应当自动把请求的地址修改为从服务器反馈回来的地址。除非额外指定，否则这个响应也是可缓存的。</p>
+<p>新的永久性的URI应当在响应的Location域中返回。除非这是一个HEAD请求，否则响应的实体中应当包含指向新的URI的超链接及简短说明。</p>
+<p>如果这不是一个GET或者HEAD请求，那么浏览器禁止自动进行重定向，除非得到用户的确认，因为请求的条件可能因此发生变化。</p>
+<p>注意：对于某些使用HTTP&#x2F;1.0协议的浏览器，当它们发送的POST请求得到了一个301响应的话，接下来的重定向请求将会变成GET方式。</p>
+</li>
+<li><p>302 Found</p>
+<p>要求客户端执行临时重定向（原始描述短语为“Moved Temporarily”）。[<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81#cite_note-RFC_1945-19">19]</a>由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。只有在Cache-Control或Expires中进行了指定的情况下，这个响应才是可缓存的。</p>
+<p>新的临时性的URI应当在响应的Location域中返回。除非这是一个HEAD请求，否则响应的实体中应当包含指向新的URI的超链接及简短说明。</p>
+<p>如果这不是一个GET或者HEAD请求，那么浏览器禁止自动进行重定向，除非得到用户的确认，因为请求的条件可能因此发生变化。</p>
+<p>注意：虽然RFC 1945和RFC  2068规范不允许客户端在重定向时改变请求的方法，但是很多现存的浏览器将302响应视作为303响应，并且使用GET方式访问在Location中规定的URI，而无视原先请求的方法。因此状态码303和307被添加了进来，用以明确服务器期待客户端进行何种反应。</p>
+</li>
+<li><p>303 See Other</p>
+<p>对应当前请求的响应可以在另一个URI上被找到，当响应于POST（或PUT &#x2F;  DELETE）接收到响应时，客户端应该假定服务器已经收到数据，并且应该使用单独的GET消息发出重定向。这个方法的存在主要是为了允许由脚本激活的POST请求输出重定向到一个新的资源。这个新的URI不是原始资源的替代引用。同时，303响应禁止被缓存。当然，第二个请求（重定向）可能被缓存。</p>
+<p>新的URI应当在响应的Location域中返回。除非这是一个HEAD请求，否则响应的实体中应当包含指向新的URI的超链接及简短说明。</p>
+<p>注意：许多HTTP&#x2F;1.1版以前的浏览器不能正确理解303状态。如果需要考虑与这些浏览器之间的互动，302状态码应该可以胜任，因为大多数的浏览器处理302响应时的方式恰恰就是上述规范要求客户端处理303响应时应当做的。</p>
+</li>
+<li><p>304 Not Modified</p>
+<p>表示资源在由请求头中的If-Modified-Since或If-None-Match参数指定的这一版本之后，未曾被修改。在这种情况下，由于客户端仍然具有以前下载的副本，因此不需要重新传输资源。</p>
+</li>
+<li><p>305 Use Proxy</p>
+<p>被请求的资源必须通过指定的代理才能被访问。Location域中将给出指定的代理所在的URI信息，接收者需要重复发送一个单独的请求，通过这个代理才能访问相应资源。只有原始服务器才能创建305响应。许多HTTP客户端（像是Mozilla）和Internet Explorer）都没有正确处理这种状态代码的响应，主要是出于安全考虑。</p>
+<p>注意：RFC 2068中没有明确305响应是为了重定向一个单独的请求，而且只能被原始服务器创建。忽视这些限制可能导致严重的安全后果。</p>
+</li>
+<li><p>306 Switch Proxy</p>
+<p>在最新版的规范中，306状态码已经不再被使用。最初是指“后续请求应使用指定的代理”。</p>
+</li>
+<li><p>307 Temporary Redirect</p>
+<p>在这种情况下，请求应该与另一个URI重复，但后续的请求应仍使用原始的URI。 与302相反，当重新发出原始请求时，不允许更改请求方法。 例如，应该使用另一个POST请求来重复POST请求。</p>
+</li>
+<li><p>308 Permanent Redirect (RFC 7538)</p>
+<p>请求和所有将来的请求应该使用另一个URI重复。 307和308重复302和301的行为，但不允许HTTP方法更改。 例如，将表单提交给永久重定向的资源可能会顺利进行</p>
+</li>
+</ul>
+<h2 id="4xx-客户端错误"><a href="#4xx-客户端错误" class="headerlink" title="4xx 客户端错误"></a>4xx 客户端错误</h2><p>这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。除非响应的是一个HEAD请求，否则服务器就应该返回一个解释当前错误状况的实体，以及这是临时的还是永久性的状况。这些状态码适用于任何请求方法。浏览器应当向用户显示任何包含在此类错误响应中的实体内容。</p>
+<p>如果错误发生时客户端正在传送数据，那么使用TCP的服务器实现应当仔细确保在关闭客户端与服务器之间的连接之前，客户端已经收到了包含错误信息的[数据包。如果客户端在收到错误信息后继续向服务器发送数据，服务器的TCP栈将向客户端发送一个重置数据包，以清除该客户端所有还未识别的输入缓冲，以免这些数据被服务器上的应用程序读取并干扰后者。</p>
+<ul>
+<li><p>400 Bad Request</p>
+<p>由于明显的客户端错误（例如，格式错误的请求语法，太大的大小，无效的请求消息或欺骗性路由请求），服务器不能或不会处理该请求。比如说访问某网站http:&#x2F;&#x2F;返回400，加上个s，https:&#x2F;&#x2F;就能访问了。</p>
+</li>
+<li><p>401 Unauthorized RFC 7235</p>
+<p>参见：HTTP基本认证、HTTP摘要认证</p>
+<p>类似于403  Forbidden，401语义即“未认证”，即用户没有必要的凭据。该状态码表示当前请求需要用户验证。该响应必须包含一个适用于被请求资源的WWW-Authenticate信息头用以询问用户信息。客户端可以重复提交一个包含恰当的Authorization头信息的请求。如果当前请求已经包含了Authorization证书，那么401响应代表着服务器验证已经拒绝了那些证书。如果401响应包含了与前一个响应相同的身份验证询问，且浏览器已经至少尝试了一次验证，那么浏览器应当向用户展示响应中包含的实体信息，因为这个实体信息中可能包含了相关诊断信息。</p>
+<p>注意：当网站（通常是网站域名）禁止IP地址时，有些网站状态码显示的401，表示该特定地址被拒绝访问网站。</p>
+</li>
+<li><p>402 Payment Required</p>
+<p>该状态码是为了将来可能的需求而预留的。该状态码最初的意图可能被用作某种形式的数字现金或在线支付方案的一部分，但几乎没有哪家服务商使用，而且这个状态码通常不被使用。如果特定开发人员已超过请求的每日限制，Google Developers API会使用此状态码。</p>
+</li>
+<li><p>403 Forbidden</p>
+<p>服务器已经理解请求，但是拒绝执行它。与401响应不同的是，身份验证并不能提供任何帮助，而且这个请求也不应该被重复提交。如果这不是一个HEAD请求，而且服务器希望能够讲清楚为何请求不能被执行，那么就应该在实体内描述拒绝的原因。当然服务器也可以返回一个404响应，假如它不希望让客户端获得任何信息。</p>
+</li>
+<li><p>404 Not Found</p>
+<p>请求失败，请求所希望得到的资源未被在服务器上发现，但允许用户的后续请求。没有信息能够告诉用户这个状况到底是暂时的还是永久的。假如服务器知道情况的话，应当使用410状态码来告知旧资源因为某些内部的配置机制问题，已经永久的不可用，而且没有任何可以跳转的地址。404这个状态码被广泛应用于当服务器不想揭示到底为何请求被拒绝或者没有其他适合的响应可用的情况下。</p>
+</li>
+<li><p>405 Method Not Allowed</p>
+<p>请求行中指定的请求方法不能被用于请求相应的资源。该响应必须返回一个Allow头信息用以表示出当前资源能够接受的请求方法的列表。例如，需要通过POST呈现数据的表单上的GET请求，或只读资源上的PUT请求。</p>
+<p>鉴于PUT，DELETE方法会对服务器上的资源进行写操作，因而绝大部分的网页服务器都不支持或者在默认配置下不允许上述请求方法，对于此类请求均会返回405错误。</p>
+</li>
+<li><p>406 Not Acceptable</p>
+<p>参见：内容协商</p>
+<p>请求的资源的内容特性无法满足请求头中的条件，因而无法生成响应实体，该请求不可接受。</p>
+<p>除非这是一个HEAD请求，否则该响应就应当返回一个包含可以让用户或者浏览器从中选择最合适的实体特性以及地址栏表的实体。实体的格式由Content-Type头中定义的媒体类型决定。浏览器可以根据格式及自身能力自行作出最佳选择。但是，规范中并没有定义任何作出此类自动选择的标准。</p>
+</li>
+<li><p>407 Proxy Authentication Required RFC 2617</p>
+<p>与401响应类似，只不过客户端必须在代理服务器上进行身份验证。代理服务器必须返回一个Proxy-Authenticate用以进行身份询问。客户端可以返回一个Proxy-Authorization信息头用以验证。</p>
+</li>
+<li><p>408 Request Timeout</p>
+<p>请求超时。根据HTTP规范，客户端没有在服务器预备等待的时间内完成一个请求的发送，客户端可以随时再次提交这一请求而无需进行任何更改。</p>
+</li>
+<li><p>409 Conflict</p>
+<p>表示因为请求存在冲突无法处理该请求，例如多个同步更新之间的编辑冲突</p>
+</li>
+<li><p>410 Gone</p>
+<p>表示所请求的资源不再可用。当资源被有意地删除并且资源应被清除时，应该使用这个。在收到410状态码后，用户应停止再次请求资源。但大多数服务端不会使用此状态码，而是直接使用404状态码。</p>
+</li>
+<li><p>411 Length Required</p>
+<p>服务器拒绝在没有定义Content-Length头的情况下接受请求。在添加了表明请求消息体长度的有效Content-Length头之后，客户端可以再次提交该请求。[<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81#cite_note-39">39]</a></p>
+</li>
+<li><p>412 Precondition Failed （RFC 7232）</p>
+<p>服务器在验证在请求的头字段中给出先决条件时，没能满足其中的一个或多个。这个状态码允许客户端在获取资源时在请求的元信息（请求头字段数据）中设置先决条件，以此避免该请求方法被应用到其希望的内容以外的资源上。</p>
+</li>
+<li><p>413 Request Entity Too Large （RFC 7231）</p>
+<p>前称“Request Entity Too Large”，表示服务器拒绝处理当前请求，因为该请求提交的实体数据大小超过了服务器愿意或者能够处理的范围。此种情况下，服务器可以关闭连接以免客户端继续发送此请求。</p>
+<p>如果这个状况是临时的，服务器应当返回一个Retry-After的响应头，以告知客户端可以在多少时间以后重新尝试。</p>
+</li>
+<li><p>414 Request-URI Too Long（RFC 7231）</p>
+<p>前称“Request-URI Too  Long”，表示请求的URI长度超过了服务器能够解释的长度，因此服务器拒绝对该请求提供服务。通常将太多数据的结果编码为GET请求的查询字符串，在这种情况下，应将其转换为POST请求。这比较少见，通常的情况包括：本应使用POST方法的表单提交变成了GET方法，导致查询字符串过长。重定向URI“黑洞”，例如每次重定向把旧的URI作为新的URI的一部分，导致在若干次重定向后URI超长。客户端正在尝试利用某些服务器中存在的安全漏洞攻击服务器。这类服务器使用固定长度的缓冲读取或操作请求的URI，当GET后的参数超过某个数值后，可能会产生缓冲区溢出，导致任意代码被执行。没有此类漏洞的服务器，应当返回414状态码。</p>
+</li>
+<li><p>415 Unsupported Media Type</p>
+<p>对于当前请求的方法和所请求的资源，请求中提交的互联网媒体类型并不是服务器中所支持的格式，因此请求被拒绝。例如，客户端将图像上传格式为svg，但服务器要求图像使用上传格式为jpg。</p>
+</li>
+<li><p>416 Requested Range Not Satisfiable（RFC 7233）</p>
+<p>前称“Requested Range Not Satisfiable”。客户端已经要求文件的一部分（Byte serving），但服务器不能提供该部分。例如，如果客户端要求文件的一部分超出文件尾端。</p>
+</li>
+<li><p>417 Expectation Failed</p>
+<p>在请求头Expect中指定的预期内容无法被服务器满足，或者这个服务器是一个代理服显的证据证明在当前路由的下一个节点上，Expect的内容无法被满足。</p>
+</li>
+<li><p>418 I’m a teapot</p>
+<p>本操作码是在1998年作为IETF的传统愚人节笑话, 在RFC  2324[超文本咖啡壶控制协议中定义的，并不需要在真实的HTTP服务器中定义。当一个控制茶壶的HTCPCP收到BREW或POST指令要求其煮咖啡时应当回传此错误。这个HTTP状态码在某些网站（包括Google.com）与项目（如Node.js、ASP.NET])和[Go语言）中用作彩蛋</p>
+</li>
+<li><p>421 Misdirected Request </p>
+<p>该请求针对的是无法产生响应的服务器（例如因为连接重用）。</p>
+</li>
+<li><p>422 Unprocessable Entity</p>
+<p>请求格式正确，但是由于含有语义错误，无法响应</p>
+</li>
+<li><p>423 Locked</p>
+<p>当前资源被锁定。</p>
+</li>
+<li><p>424 Failed Dependency</p>
+<p>由于之前的某个请求发生的错误，导致当前请求失败，例如PROPPATCH。</p>
+</li>
+<li><p>425 Too Early </p>
+<p>服务器拒绝处理在Early Data中的请求，以规避可能的重放攻击</p>
+</li>
+<li><p>426 Upgrade Required</p>
+<p>客户端应切换到Upgrade头字段中给出的不同协议，如TLS&#x2F;1.0</p>
+</li>
+<li><p>428 Precondition Required </p>
+<p>原服务器要求该请求满足一定条件。这是为了防止“未更新”问题，即客户端读取（GET）一个资源的状态，更改它，并将它写（PUT）回服务器，但这期间第三方已经在服务器上更改了该资源的状态，因此导致了冲突。”</p>
+</li>
+<li><p>429 Too Many Requests </p>
+<p>用户在给定的时间内发送了太多的请求。旨在用于网络限速</p>
+</li>
+<li><p>431 Request Header Fields Too Large </p>
+<p>服务器不愿处理请求，因为一个或多个头字段过大。</p>
+</li>
+<li><p>440 Login Time-out</p>
+<p>客户端session超时失效，需要重新登录。</p>
+</li>
+<li><p>451 Unavailable For Legal Reasons</p>
+</li>
+</ul>
+<h2 id="5xx-服务器错误"><a href="#5xx-服务器错误" class="headerlink" title="5xx 服务器错误"></a>5xx 服务器错误</h2><p>表示服务器无法完成明显有效的请求。这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。除非这是一个HEAD请求，否则服务器应当包含一个解释当前错误状态以及这个状况是临时的还是永久的解释信息实体。浏览器应当向用户展示任何在当前响应中被包含的实体。这些状态码适用于任何响应方法。</p>
+<ul>
+<li><p>500 Internal Server Error</p>
+<p>通用错误消息，服务器遇到了一个未曾预料的状况，导致了它无法完成对请求的处理。没有给出具体错误信息。假如把服务器当成超市，GET请求一个可乐，如果有返回200，没有返回404，有但是不给返回403，<strong>但是</strong>假如GET请求一个82年的可乐，超市可能一时之间理解不了，宕机了返回500，跟Ddos攻击没关系，这就是意料之外的状况。或者是来个苹果味儿的香蕉之类无法理解的请求都会导致500。软件测试人员特别喜欢看见500，因为他们测试的时候喜欢在包里面添加一些稀奇古怪的数据，把服务器弄崩，这是他的工作产出。</p>
+</li>
+<li><p>501 Not Implemented</p>
+<p>服务器不支持当前请求所需要的某个功能。当服务器无法识别请求的方法，并且无法支持其对任何资源的请求。（例如，网络服务API的新功能）</p>
+</li>
+<li><p>502 Bad Gateway</p>
+<p>作为网关或者代理工作的服务器尝试执行请求时，从上游服务器接收到无效的响应。</p>
+</li>
+<li><p>503 Service Unavailable</p>
+<p>由于临时的服务器维护或者过载，服务器当前无法处理请求。这个状况是暂时的，并且将在一段时间以后恢复。如果能够预计延迟时间，那么响应中可以包含一个Retry-After头用以标明这个延迟时间。如果没有给出这个Retry-After信息，那么客户端应当以处理500响应的方式处理它。</p>
+</li>
+<li><p>504 Gateway Timeout</p>
+<p>作为网关或者代理工作的服务器尝试执行请求时，未能及时从上游服务器（URI标识出的服务器，例如HTTP、FTP、LDAP）或者辅助服务器（例如DNS）收到响应。</p>
+<p>注意：某些代理服务器在DNS查询超时时会返回400或者500错误。</p>
+</li>
+<li><p>505 HTTP Version Not Supported</p>
+<p>服务器不支持，或者拒绝支持在请求中使用的HTTP版本。这暗示着服务器不能或不愿使用与客户端相同的版本。响应中应当包含一个描述了为何版本不被支持以及服务器支持哪些协议的实体。</p>
+</li>
+<li><p>506 Variant Also Negotiates</p>
+<p>由《透明内容协商协议》扩展，代表服务器存在内部配置错误，[<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81#cite_note-RFC_2295-64">64]</a>被请求的协商变元资源被配置为在透明内容协商中使用自己，因此在一个协商处理中不是一个合适的重点。</p>
+</li>
+<li><p>507 Insufficient Storage</p>
+<p>服务器无法存储完成请求所必须的内容。这个状况被认为是临时的。</p>
+</li>
+<li><p>508 Loop Detected </p>
+<p>服务器在处理请求时陷入死循环。 （可代替 208状态码]）</p>
+</li>
+<li><p>510 Not Extended</p>
+<p>获取资源所需要的策略并没有被满足</p>
+</li>
+<li><p>511 Network Authentication Required ）</p>
+<p>客户端需要进行身份验证才能获得网络访问权限，旨在限制用户群访问特定网络。（例如连接WiFi热点时的强制网络门户）</p>
+</li>
+</ul>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1**(信息类)：表示接收到请求并且继续处理</span><br><span class="line">100——客户必须继续发出请求</span><br><span class="line">101——客户要求服务器根据请求转换HTTP协议版本</span><br><span class="line">2**(响应成功)：表示动作被成功接收、理解和接受</span><br><span class="line">200——表明该请求被成功地完成，所请求的资源发送回客户端</span><br><span class="line">201——提示知道新文件的URL</span><br><span class="line">202——接受和处理、但处理未完成</span><br><span class="line">203——返回信息不确定或不完整</span><br><span class="line">204——请求收到，但返回信息为空</span><br><span class="line">205——服务器完成了请求，用户代理必须复位当前已经浏览过的文件</span><br><span class="line">206——服务器已经完成了部分用户的GET请求</span><br><span class="line">3**(重定向类)：为了完成指定的动作，必须接受进一步处理</span><br><span class="line">300——请求的资源可在多处得到</span><br><span class="line">301——本网页被永久性转移到另一个URL</span><br><span class="line">302——请求的网页被转移到一个新的地址，但客户访问仍继续通过原始URL地址，重定向，新的URL会在response中的Location中返回，浏览器将会使用新的URL发出新的Request。</span><br><span class="line">303——建议客户访问其他URL或访问方式</span><br><span class="line">304——自从上次请求后，请求的网页未修改过，服务器返回此响应时，不会返回网页内容，代表上次的文档已经被缓存了，还可以继续使用</span><br><span class="line">305——请求的资源必须从服务器指定的地址得到</span><br><span class="line">306——前一版本HTTP中使用的代码，现行版本中不再使用</span><br><span class="line">307——申明请求的资源临时性删除</span><br><span class="line">4**(客户端错误类)：请求包含错误语法或不能正确执行</span><br><span class="line">400——客户端请求有语法错误，不能被服务器所理解。比如说访问某网站http://返回400，加上个s，https://就能访问了。</span><br><span class="line">401——请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用</span><br><span class="line">HTTP 401.1 - 未授权：登录失败</span><br><span class="line">HTTP 401.2 - 未授权：服务器配置问题导致登录失败</span><br><span class="line">HTTP 401.3 - ACL 禁止访问资源</span><br><span class="line">HTTP 401.4 - 未授权：授权被筛选器拒绝</span><br><span class="line">HTTP 401.5 - 未授权：ISAPI 或 CGI 授权失败</span><br><span class="line">402——保留有效ChargeTo头响应</span><br><span class="line">403——禁止访问，服务器收到请求，但是拒绝提供服务</span><br><span class="line">HTTP 403.1 禁止访问：禁止可执行访问</span><br><span class="line">HTTP 403.2 - 禁止访问：禁止读访问</span><br><span class="line">HTTP 403.3 - 禁止访问：禁止写访问</span><br><span class="line">HTTP 403.4 - 禁止访问：要求 SSL</span><br><span class="line">HTTP 403.5 - 禁止访问：要求 SSL 128</span><br><span class="line">HTTP 403.6 - 禁止访问：IP 地址被拒绝</span><br><span class="line">HTTP 403.7 - 禁止访问：要求客户证书</span><br><span class="line">HTTP 403.8 - 禁止访问：禁止站点访问</span><br><span class="line">HTTP 403.9 - 禁止访问：连接的用户过多</span><br><span class="line">HTTP 403.10 - 禁止访问：配置无效</span><br><span class="line">HTTP 403.11 - 禁止访问：密码更改</span><br><span class="line">HTTP 403.12 - 禁止访问：映射器拒绝访问</span><br><span class="line">HTTP 403.13 - 禁止访问：客户证书已被吊销</span><br><span class="line">HTTP 403.15 - 禁止访问：客户访问许可过多</span><br><span class="line">HTTP 403.16 - 禁止访问：客户证书不可信或者无效</span><br><span class="line">HTTP 403.17 - 禁止访问：客户证书已经到期或者尚未生效</span><br><span class="line">404——一个404错误表明可连接服务器，但服务器无法取得所请求的网页，请求资源不存在。eg：输入了错误的URL</span><br><span class="line">405——用户在Request-Line字段定义的方法不允许</span><br><span class="line">406——根据用户发送的Accept拖，请求资源不可访问</span><br><span class="line">407——类似401，用户必须首先在代理服务器上得到授权</span><br><span class="line">408——客户端没有在用户指定的饿时间内完成请求</span><br><span class="line">409——对当前资源状态，请求不能完成</span><br><span class="line">410——服务器上不再有此资源且无进一步的参考地址</span><br><span class="line">411——服务器拒绝用户定义的Content-Length属性请求</span><br><span class="line">412——一个或多个请求头字段在当前请求中错误</span><br><span class="line">413——请求的资源大于服务器允许的大小</span><br><span class="line">414——请求的资源URL长于服务器允许的长度</span><br><span class="line">415——请求资源不支持请求项目格式</span><br><span class="line">416——请求中包含Range请求头字段，在当前请求资源范围内没有range指示值，请求也不包含If-Range请求头字段</span><br><span class="line">417——服务器不满足请求Expect头字段指定的期望值，如果是代理服务器，可能是下一级服务器不能满足请求长。</span><br><span class="line">5**(服务端错误类)：服务器不能正确执行一个正确的请求</span><br><span class="line">HTTP 500 - 服务器遇到错误，无法完成请求</span><br><span class="line">HTTP 500.100 - 内部服务器错误 - ASP 错误</span><br><span class="line">HTTP 500-11 服务器关闭</span><br><span class="line">HTTP 500-12 应用程序重新启动</span><br><span class="line">HTTP 500-13 - 服务器太忙</span><br><span class="line">HTTP 500-14 - 应用程序无效</span><br><span class="line">HTTP 500-15 - 不允许请求 global.asa</span><br><span class="line">Error 501 - 未实现</span><br><span class="line">HTTP 502 - 网关错误</span><br><span class="line">HTTP 503：由于超载或停机维护，服务器目前无法使用，一段时间后可能恢复正常</span><br><span class="line">500和503在用菜刀的时候可能会出现，因为WAF拦截了</span><br></pre></td></tr></table></figure>
+
+<h1 id="5-响应标记头"><a href="#5-响应标记头" class="headerlink" title="5 响应标记头"></a>5 响应标记头</h1><table>
+<thead>
+<tr>
+<th align="center">字段名</th>
+<th align="center">说明</th>
+<th align="center">例子</th>
+<th align="center">状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Access-Control-Allow-Origin</td>
+<td align="center">指定哪些网站可参与到跨来源资源共享过程中</td>
+<td align="center"><code>Access-Control-Allow-Origin: *</code></td>
+<td align="center">临时</td>
+</tr>
+<tr>
+<td align="center">Accept-Patch</td>
+<td align="center">指定服务器支持的文件格式类型。</td>
+<td align="center"><code>Accept-Patch: text/example;charset=utf-8</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Accept-Ranges</td>
+<td align="center">这个服务器支持哪些种类的部分内容范围</td>
+<td align="center"><code>Accept-Ranges: bytes</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Age</td>
+<td align="center">这个对象在代理缓存中存在的时间，以秒为单位</td>
+<td align="center"><code>Age: 12</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Allow</td>
+<td align="center">对于特定资源有效的动作。针对HTTP&#x2F;405这一错误代码而使用</td>
+<td align="center"><code>Allow: GET, HEAD</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Cache-Control</td>
+<td align="center">向从服务器直到客户端在内的所有缓存机制告知，它们是否可以缓存这个对象。其单位为秒</td>
+<td align="center"><code>Cache-Control: max-age=3600</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Connection</td>
+<td align="center">针对该连接所预期的选项</td>
+<td align="center"><code>Connection: close</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Content-Disposition</td>
+<td align="center">一个可以让客户端下载文件并建议文件名的头部。文件名需要用双引号包裹。</td>
+<td align="center"><code>Content-Disposition: attachment; filename=&quot;fname.ext&quot;</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Content-Encoding</td>
+<td align="center">在数据上使用的编码类型。参考 超文本传输协议压缩 。</td>
+<td align="center"><code>Content-Encoding: gzip</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Content-Language</td>
+<td align="center">内容所使用的语言</td>
+<td align="center"><code>Content-Language: da</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Content-Length</td>
+<td align="center">回应消息体的长度，以 字节 （8位为一字节）为单位</td>
+<td align="center"><code>Content-Length: 348</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Content-Location</td>
+<td align="center">所返回的数据的一个候选位置</td>
+<td align="center"><code>Content-Location: /index.htm</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Content-MD5</td>
+<td align="center">回应内容的二进制 MD5 散列，以 Base64 方式编码</td>
+<td align="center"><code>Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ==</code></td>
+<td align="center">过时的</td>
+</tr>
+<tr>
+<td align="center">Content-Range</td>
+<td align="center">这条部分消息是属于某条完整消息的哪个部分</td>
+<td align="center"><code>Content-Range: bytes 21010-47021/47022</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Content-Type</td>
+<td align="center">当前内容的MIME类型</td>
+<td align="center"><code>Content-Type: text/html; charset=utf-8</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Date</td>
+<td align="center">此条消息被发送时的日期和时间(按照 RFC 7231 中定义的“超文本传输协议日期”格式来表示)</td>
+<td align="center"><code>Date: Tue, 15 Nov 1994 08:12:31 GMT</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP_ETag">ETag</a></td>
+<td align="center">对于某个资源的某个特定版本的一个标识符，通常是一个 消息散列</td>
+<td align="center"><code>ETag: &quot;737060cd8c284d8af7ad3082f209582d&quot;</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Expires</td>
+<td align="center">指定一个日期&#x2F;时间，超过该时间则认为此回应已经过期</td>
+<td align="center"><code>Expires: Thu, 01 Dec 1994 16:00:00 GMT</code></td>
+<td align="center">常设: 标准</td>
+</tr>
+<tr>
+<td align="center">Last-Modified</td>
+<td align="center">所请求的对象的最后修改日期(按照 RFC 7231 中定义的“超文本传输协议日期”格式来表示)</td>
+<td align="center"><code>Last-Modified: Tue, 15 Nov 1994 12:45:26 GMT</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Link</td>
+<td align="center">用来表达与另一个资源之间的类型关系，此处所说的类型关系是在 RFC 5988 中定义的</td>
+<td align="center"><code>Link: &lt;/feed&gt;; rel=&quot;alternate&quot;</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Location</td>
+<td align="center">用来 进行重定向，或者在创建了某个新资源时使用。</td>
+<td align="center"><code>Location: http://www.w3.org/pub/WWW/People.html</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">P3P</td>
+<td align="center">用于支持设置P3P策略，标准格式为“<code>P3P:CP=&quot;your_compact_policy&quot;</code>”。然而P3P规范并不成功，[<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5#cite_note-33">33]</a>大部分现代浏览器没有完整实现该功能，而大量网站也将该值设为假值，从而足以用来欺骗浏览器的P3P插件功能并授权给第三方Cookies。</td>
+<td align="center"><code>P3P: CP=&quot;This is not a P3P policy!  ``See  http://www.google.com/support/accounts/bin/answer.py?hl=en&amp;answer=151657 for more info.&quot;</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Pragma</td>
+<td align="center">与具体的实现相关，这些字段可能在请求&#x2F;回应链中的任何时候产生多种效果。</td>
+<td align="center"><code>Pragma: no-cache</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Proxy-Authenticate</td>
+<td align="center">要求在访问代理时提供身份认证信息。</td>
+<td align="center"><code>Proxy-Authenticate: Basic</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Public-Key-Pins</td>
+<td align="center">用于缓解中间人攻击，声明网站认证使用的传输层安全协议证书的散列值</td>
+<td align="center"><code>Public-Key-Pins: max-age=2592000; pin-sha256=&quot;E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g=&quot;;</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Refresh</td>
+<td align="center">用于设定可定时的重定向跳转。右边例子设定了5秒后跳转至“<code>http://www.w3.org/pub/WWW/People.html</code>”。</td>
+<td align="center"><code>Refresh: 5; url=http://www.w3.org/pub/WWW/People.html</code></td>
+<td align="center">专利并非标准Netscape实现的扩展，但大部分网页浏览器也支持。</td>
+</tr>
+<tr>
+<td align="center">Retry-After</td>
+<td align="center">如果某个实体临时不可用，则，此协议头用来告知客户端日后重试。其值可以是一个特定的时间段(以秒为单位)或一个超文本传输协议日期。</td>
+<td align="center">Example 1: <code>Retry-After: 120</code>Example 2: <code>Retry-After: Fri, 07 Nov 2014 23:59:59 GMT</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Server</td>
+<td align="center">服务器的名字</td>
+<td align="center"><code>Server: Apache/2.4.1 (Unix)</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Set-Cookie</td>
+<td align="center">HTTP cookie</td>
+<td align="center"><code>Set-Cookie: UserID=JohnDoe; Max-Age=3600; Version=1</code></td>
+<td align="center">常设: 标准</td>
+</tr>
+<tr>
+<td align="center">Status</td>
+<td align="center">通用网关接口 协议头字段，用来说明当前这个超文本传输协议回应的 状态 。普通的超文本传输协议回应，会使用单独的“状态行”（”Status-Line”）作为替代，这一点是在 RFC 7230 中定义的。</td>
+<td align="center"><code>Status: 200 OK</code></td>
+<td align="center">Not listed as a registered field name</td>
+</tr>
+<tr>
+<td align="center">Strict-Transport-Security</td>
+<td align="center">HTTP 严格传输安全这一头部告知客户端缓存这一强制 HTTPS 策略的时间，以及这一策略是否适用于其子域名。</td>
+<td align="center"><code>Strict-Transport-Security: max-age=16070400; includeSubDomains</code></td>
+<td align="center">常设: 标准</td>
+</tr>
+<tr>
+<td align="center">Trailer</td>
+<td align="center">这个头部数值指示了在这一系列头部信息由由分块传输编码编码。</td>
+<td align="center"><code>Trailer: Max-Forwards</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Transfer-Encoding</td>
+<td align="center">用来将实体安全地传输给用户的编码形式。当前定义的方法包括：分块（chunked）、compress、deflate、gzip和identity。</td>
+<td align="center"><code>Transfer-Encoding: chunked</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Upgrade</td>
+<td align="center">要求客户端升级到另一个协议。</td>
+<td align="center"><code>Upgrade: HTTP/2.0, SHTTP/1.3, IRC/6.9, RTA/x11</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Vary</td>
+<td align="center">告知下游的代理服务器，应当如何对未来的请求协议头进行匹配，以决定是否可使用已缓存的回应内容而不是重新从原始服务器请求新的内容。</td>
+<td align="center"><code>Vary: *</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Via</td>
+<td align="center">告知代理服务器的客户端，当前回应是通过什么途径发送的。</td>
+<td align="center"><code>Via: 1.0 fred, 1.1 example.com (Apache/1.1)</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">Warning</td>
+<td align="center">一般性的警告，告知在实体内容体中可能存在错误。</td>
+<td align="center"><code>Warning: 199 Miscellaneous warning</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">WWW-Authenticate</td>
+<td align="center">表明在请求获取这个实体时应当使用的认证模式。</td>
+<td align="center"><code>WWW-Authenticate: Basic</code></td>
+<td align="center">常设</td>
+</tr>
+<tr>
+<td align="center">X-Frame-Options</td>
+<td align="center">点击劫持保护：<code>deny</code>：该页面不允许在 frame 中展示，即使是同域名内。<code>sameorigin</code>：该页面允许同域名内在 frame 中展示。<code>allow-from *uri*</code>：该页面允许在指定uri的 frame 中展示。<code>allowall</code>：允许任意位置的frame显示，非标准值。</td>
+<td align="center"><code>X-Frame-Options:</code></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h2><figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Bdpagetype</span><span class="punctuation">: </span>2</span><br><span class="line"><span class="attribute">Bdqid</span><span class="punctuation">: </span>0x836a8eec00047b12</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>private</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html;charset=utf-8</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Mon, 19 Sep 2022 08:52:29 GMT</span><br><span class="line"><span class="attribute">Expires</span><span class="punctuation">: </span>Mon, 19 Sep 2022 08:52:29 GMT</span><br><span class="line"><span class="attribute">Isprivate</span><span class="punctuation">: </span>1</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>BWS/1.1</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>BDSVRTM=273; path=/</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>BD_HOME=1; path=/</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>H_PS_PSSID=37155_36545_37353_37300_36885_37274_37261_26350_37343_37371; path=/; domain=.baidu.com</span><br><span class="line"><span class="attribute">Strict-Transport-Security</span><span class="punctuation">: </span>max-age=172800</span><br><span class="line"><span class="attribute">Traceid</span><span class="punctuation">: </span>166357754902251922029469538310763608850</span><br><span class="line"><span class="attribute">X-Frame-Options</span><span class="punctuation">: </span>sameorigin</span><br><span class="line"><span class="attribute">X-Ua-Compatible</span><span class="punctuation">: </span>IE=Edge,chrome=1</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>355396</span><br></pre></td></tr></table></figure>
+
+<p>Server：网站所使用的容器，Apache等。</p>
+<p>Date：表示消息发送的时间，时间的描述格式由rfc822定义。Date描 述的时间表示世界标准时，换算成本地时间，需要知道用户所在的时区。你可以用setDateHeader来设置这个头以避免 转换时间格式的麻烦。</p>
+<p>Expires：指明应该在什么时候认为文档已经过期，从而不再缓存它，重新从服务器获取，会更新缓存。过期之前使用本 地缓存。HTTP1.1的客户端和缓存会将非法的日期格式（包括0）看作已经过期。eg：为了让浏览器不要缓存页面，我 们也可以将Expires实体报头域，设置为0。</p>
+<p>X-AspNet-Version：如果网站是用ASP.NET开发的，这个header用来表示ASP.NET的版本。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://qeminco.github.io">Qeminco</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://qeminco.github.io/2024/05/25/HTTP%E5%8D%8F%E8%AE%AE/">https://qeminco.github.io/2024/05/25/HTTP协议/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://qeminco.github.io" target="_blank">Qeminco'blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a></div><div class="post_share"></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/05/25/HTTPS%E5%8D%8F%E8%AE%AE/" title="HTTP协议"><img class="cover" src="/img/44.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-25</div><div class="title">HTTP协议</div></div></a></div><div><a href="/2024/06/18/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86%E5%8D%8F%E8%AE%AE/" title="远程管理协议"><img class="cover" src="/img/18.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-18</div><div class="title">远程管理协议</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/kunkun.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Qeminco</div><div class="author-info__description">学习如逆水行舟，不进则退。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">生活明朗，万物可爱。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">1 概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">2 请求方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GET"><span class="toc-number">2.1.</span> <span class="toc-text">GET</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HEAD"><span class="toc-number">2.2.</span> <span class="toc-text">HEAD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#POST"><span class="toc-number">2.3.</span> <span class="toc-text">POST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PUT"><span class="toc-number">2.4.</span> <span class="toc-text">PUT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DELETE"><span class="toc-number">2.5.</span> <span class="toc-text">DELETE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TRACE"><span class="toc-number">2.6.</span> <span class="toc-text">TRACE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OPTIONS"><span class="toc-number">2.7.</span> <span class="toc-text">OPTIONS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CONNECT"><span class="toc-number">2.8.</span> <span class="toc-text">CONNECT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GET%E5%92%8CPOST%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.9.</span> <span class="toc-text">GET和POST的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http-log"><span class="toc-number">2.10.</span> <span class="toc-text">http log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#get%E3%80%81post%E4%BA%92%E8%BD%AC"><span class="toc-number">2.11.</span> <span class="toc-text">get、post互转</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E8%AF%B7%E6%B1%82%E6%A0%87%E8%AE%B0%E5%A4%B4"><span class="toc-number">3.</span> <span class="toc-text">3 请求标记头</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GET-HTTP-1-1"><span class="toc-number">3.1.</span> <span class="toc-text">GET &#x2F; HTTP&#x2F;1.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Host"><span class="toc-number">3.2.</span> <span class="toc-text">Host</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Agent"><span class="toc-number">3.3.</span> <span class="toc-text">User-Agent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Content-Length"><span class="toc-number">3.4.</span> <span class="toc-text">Content-Length</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Content-Type"><span class="toc-number">3.5.</span> <span class="toc-text">Content-Type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Accept"><span class="toc-number">3.6.</span> <span class="toc-text">Accept</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Accept-Language"><span class="toc-number">3.7.</span> <span class="toc-text">Accept-Language</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Referer"><span class="toc-number">3.8.</span> <span class="toc-text">Referer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Connection-keep-alive"><span class="toc-number">3.9.</span> <span class="toc-text">Connection: keep-alive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Connection-close"><span class="toc-number">3.10.</span> <span class="toc-text">Connection: close</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Origin"><span class="toc-number">3.11.</span> <span class="toc-text">Origin</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">4 响应状态码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1xx-%E6%B6%88%E6%81%AF"><span class="toc-number">4.1.</span> <span class="toc-text">1xx 消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2xx-%E6%88%90%E5%8A%9F"><span class="toc-number">4.2.</span> <span class="toc-text">2xx 成功</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3xx-%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">4.3.</span> <span class="toc-text">3xx 重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4xx-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%94%99%E8%AF%AF"><span class="toc-number">4.4.</span> <span class="toc-text">4xx 客户端错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5xx-%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%94%99%E8%AF%AF"><span class="toc-number">4.5.</span> <span class="toc-text">5xx 服务器错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-number">4.6.</span> <span class="toc-text">状态码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%93%8D%E5%BA%94%E6%A0%87%E8%AE%B0%E5%A4%B4"><span class="toc-number">5.</span> <span class="toc-text">5 响应标记头</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%A4%B4"><span class="toc-number">5.1.</span> <span class="toc-text">响应头</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题"><img src="/img/14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题">无题</a><time datetime="2024-06-27T15:07:52.030Z" title="发表于 2024-06-27 23:07:52">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi"><img src="/img/26.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JNDI、ldap与rmi"/></a><div class="content"><a class="title" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi">JNDI、ldap与rmi</a><time datetime="2024-06-26T16:00:00.000Z" title="发表于 2024-06-27 00:00:00">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fastjson反序列化RCE"/></a><div class="content"><a class="title" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE">Fastjson反序列化RCE</a><time datetime="2024-06-24T16:00:00.000Z" title="发表于 2024-06-25 00:00:00">2024-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud Gateway远程命令执行漏洞复现"/></a><div class="content"><a class="title" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现">Spring Cloud Gateway远程命令执行漏洞复现</a><time datetime="2024-06-22T16:00:00.000Z" title="发表于 2024-06-23 00:00:00">2024-06-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven"><img src="/img/6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="idea配置Maven"/></a><div class="content"><a class="title" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven">idea配置Maven</a><time datetime="2024-06-20T16:00:00.000Z" title="发表于 2024-06-21 00:00:00">2024-06-21</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/44.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By Qeminco</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到我的博客~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://qeminco-twikoo.hf.space',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://qeminco-twikoo.hf.space',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

